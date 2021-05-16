@@ -1,0 +1,68 @@
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 21, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "wlr/taskbar"],
+    //"modules-center": [],
+    "modules-right": ["sway/language", "pulseaudio", "clock", "tray"],
+    // Modules configuration
+    //"wlr/workspaces": {
+    //    "disable-scroll": false,
+    //    "format": "{icon}",
+    //    "format-icons": {
+    //        "1": "",
+    //        "2": "",
+    //        "3": "",
+    //        "4": "",
+    //        "urgent": "",
+    //        "default": ""
+    //    }
+    //},
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+	"wlr/taskbar": {
+    	"format": "{icon}  {title}",
+	    "on-click": "activate",
+    	"on-click-middle": "close",
+		"tooltip": false,
+		"ignore-list": [
+			"Alacritty"
+		]
+    },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "tray": {
+        "spacing": 5
+    },
+    "clock": {
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip": false,
+        "interval": 30
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "0%",
+        "format-icons": {
+            "default": ["", ""]
+        },
+		"scroll-step": 5,
+        "on-click": "amixer set Master toggle",
+        "on-click-middle": "pavucontrol"
+    },
+	"sway/language": {
+		"format": "{}"
+	}
+}
