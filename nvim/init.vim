@@ -60,15 +60,13 @@ Plug 'python-rope/ropevim'
 Plug 'itchyny/vim-cursorword'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tikhomirov/vim-glsl'
+Plug 'joshdick/onedark.vim'
+Plug 'janko-m/vim-test'
 call plug#end()
 nnoremap <F8> :TagbarToggle<CR>
 set background=dark
-colorscheme Iosvkem
 set termguicolors
-let g:airline_powerline_fonts = 1
-let g:instant_markdown_mathjax = 1
-let g:vim_markdown_math = 1
-let g:tagbar_position = 'left'
+colorscheme Iosvkem
 source /home/dmitry/.config/nvim/coc.nvim
 nmap <leader>w :w<CR>
 inoremap <Left> <nop>
@@ -100,8 +98,30 @@ command! -bang -nargs=? -complete=dir Files
   \                               'options': '--tiebreak=index'}, <bang>0)
 
 autocmd InsertLeave * set nopaste
-let g:cpp_class_decl_highlight = 1
+
+let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
+let g:instant_markdown_mathjax = 1
+let g:vim_markdown_math = 1
+let g:tagbar_position = 'left'
+let g:airline_detect_spell = 0
+
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
+
+let g:airline_skip_empty_sections = 1
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+
+
+function MyCustomPythonHighlights()
+	hi semshiImported        guifg=#b67fda cterm=NONE gui=None
+	hi semshiGlobal          guifg=#b67fda
+	hi semshiBuiltin         guifg=#00aa80
+	hi semshiAttribute       guifg=#b67fda
+	hi semshiSelf            guifg=#519af8
+endfunction
+autocmd FileType python call MyCustomPythonHighlights()
