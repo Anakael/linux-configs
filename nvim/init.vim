@@ -46,24 +46,24 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 Plug 'cdelledonne/vim-cmake'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'lervag/vimtex'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'python-rope/ropevim'
 Plug 'itchyny/vim-cursorword'
 Plug 'scrooloose/nerdcommenter'
-Plug 'tikhomirov/vim-glsl'
 Plug 'joshdick/onedark.vim'
 Plug 'janko-m/vim-test'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'cespare/vim-toml'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 nnoremap <F8> :TagbarToggle<CR>
 set background=dark
@@ -80,26 +80,6 @@ nnoremap <Right> <nop>
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
 set colorcolumn=100
-noremap <leader>s :Rg<CR>
-let g:fzf_layout = { 'down': '~20%' }
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-
-function! s:list_cmd()
-  let base = fnamemodify(expand('%'), ':h:.:S')
-  return base == '.' ? 'fd --type file --follow' : printf('fd --type file --follow | proximity-sort %s', shellescape(expand('%')))
-endfunction
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
-  \                               'options': '--tiebreak=index'}, <bang>0)
-
-autocmd InsertLeave * set nopaste
 
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
@@ -118,15 +98,9 @@ let g:airline_skip_empty_sections = 1
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 
+let g:coc_sources_disable_map = { 'cs': ['cs-1', 'cs-2', 'cs-3'] }
+let g:OmniSharp_highlighting = 0
 
-function MyCustomPythonHighlights()
-	hi semshiImported        guifg=#b67fda cterm=NONE gui=None
-	hi semshiGlobal          guifg=#b67fda
-	hi semshiBuiltin         guifg=#00aa80
-	hi semshiAttribute       guifg=#b67fda
-	hi semshiSelf            guifg=#519af8
-endfunction
-autocmd FileType python call MyCustomPythonHighlights()
 
 " Don't autoselect first omnicomplete option, show options even if there is only
 " one (so the preview documentation is accessible). Remove 'preview', 'popup'
@@ -145,8 +119,6 @@ else
   set previewheight=5
 endif
 
-let g:coc_sources_disable_map = { 'cs': ['cs-1', 'cs-2', 'cs-3'] }
-
 augroup omnisharp_commands
   autocmd!
 
@@ -154,6 +126,7 @@ augroup omnisharp_commands
   " Note that the type is echoed to the Vim command line, and will overwrite
   " any other messages in this space including e.g. ALE linting messages.
   autocmd CursorHold *.cs OmniSharpTypeLookup
+  autocmd FileType cs setlocal expandtab
 
   " The following commands are contextual, based on the cursor position.
   autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
@@ -188,3 +161,19 @@ augroup omnisharp_commands
   autocmd FileType cs nmap <silent> <buffer> <Leader>osst <Plug>(omnisharp_start_server)
   autocmd FileType cs nmap <silent> <buffer> <Leader>ossp <Plug>(omnisharp_stop_server)
 augroup END
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "java", "python", "c_sharp", "cpp", "rust" },
+  highlight = {
+    enable = true
+  }
+}
+EOF
+let g:rooter_patterns = ['.venv']
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
