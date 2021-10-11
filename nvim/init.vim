@@ -28,8 +28,7 @@ set exrc
 set clipboard+=unnamedplus
 set title
 set mat=2
-set spelllang=en_us,ru_yo
-set spell
+set nospell
 set langmap=КЕНГШЩЗФЫВАПРОЛДЖЧСМИТЬБЮ;PYFGCRLAOEUIDHTNSQJKXBMWV,кенгшщзфывапролджчсмитьбю;pyfgcrlaoeuidhtnsqjkxbmwv
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -64,6 +63,12 @@ Plug 'cespare/vim-toml'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'mg979/docgen.vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'aklt/plantuml-syntax'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
 call plug#end()
 nnoremap <F8> :TagbarToggle<CR>
 set background=dark
@@ -177,3 +182,12 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Docgen
+nmap ,d <Plug>(DocGen)
+nnoremap <Space><Tab> cgn
+
+" Ranger
+nnoremap <silent><Leader>n :Ranger<CR>
+nnoremap <silent><Leader>r :RangerWorkingDirectory<CR>
+let g:ranger_replace_netrw = 1 

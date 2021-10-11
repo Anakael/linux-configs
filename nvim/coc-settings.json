@@ -1,8 +1,10 @@
 {
 	"rust-analyzer.serverPath": "/home/dmitry/.local/bin/rust-analyzer",
+	"omnisharp.path": "/home/dmitry/.cache/omnisharp-vim/omnisharp-roslyn/run",
 	"diagnostic-languageserver.mergeConfig": true,
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
 	"python.analysis.diagnosticMode": "workspace",
-	"python.formatting.provider": "none",
 	"python.linting.flake8Enabled": true,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"python",
