@@ -29,7 +29,7 @@ set clipboard+=unnamedplus
 set title
 set mat=2
 set nospell
-set langmap=КЕНГШЩЗФЫВАПРОЛДЖЧСМИТЬБЮ;PYFGCRLAOEUIDHTNSQJKXBMWV,кенгшщзфывапролджчсмитьбю;pyfgcrlaoeuidhtnsqjkxbmwv
+set langmap=ЙЦУКЕНГШЩФЫВАПРОЛДЖЯЧСМИТЬ;QWFPGJLUYARSTDHNEIOZXCVBKM,йцукенгшщфывапролджячсмить;qwfpgjluyarstdhneiozxcvbkm
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -48,7 +48,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 Plug 'cdelledonne/vim-cmake'
 Plug 'lervag/vimtex'
 Plug 'python-rope/ropevim'
@@ -67,8 +66,7 @@ Plug 'mg979/docgen.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'aklt/plantuml-syntax'
-Plug 'weirongxu/plantuml-previewer.vim'
-Plug 'tyru/open-browser.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 nnoremap <F8> :TagbarToggle<CR>
 set background=dark
@@ -105,6 +103,7 @@ let g:airline_section_y = ''
 
 let g:coc_sources_disable_map = { 'cs': ['cs-1', 'cs-2', 'cs-3'] }
 let g:OmniSharp_highlighting = 0
+let g:OmniSharp_server_path = '/usr/bin/omnisharp'
 
 
 " Don't autoselect first omnicomplete option, show options even if there is only

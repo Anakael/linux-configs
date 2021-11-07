@@ -1,6 +1,7 @@
 {
 	"rust-analyzer.serverPath": "/home/dmitry/.local/bin/rust-analyzer",
-	"omnisharp.path": "/home/dmitry/.cache/omnisharp-vim/omnisharp-roslyn/run",
+	"rust-analyzer.cargo.allFeatures": true,
+	"omnisharp.path": "/usr/bin/omnisharp",
 	"diagnostic-languageserver.mergeConfig": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": false,
