@@ -61,7 +61,7 @@ require('lualine').setup {
     theme = 'codedark'
   },
   sections = {
-    lualine_b = {'branch', 'diff', 
+    lualine_b = {'branch', 'diff',
                 {'diagnostics',
                     sources={'nvim_lsp'},
                     symbols = {
@@ -71,7 +71,7 @@ require('lualine').setup {
                         hint = ' ', -- xf838
                     }
                 }},
-    lualine_c = { 'filename', 'lsp_progress' },
+    lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
     lualine_x = { },
     lualine_y = { },
   }
