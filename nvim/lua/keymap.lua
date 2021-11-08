@@ -33,10 +33,6 @@ map('n', '<leader>b', '<cmd>lua require("telescope.builtin").buffers()<CR>', def
 -- tagbar
 map('', '<F8>', ':TagbarToggle<CR>', default_opts)
 
--- Docgen
-map('', '<leader>d', '<Plug>(Docgen)', default_opts)
-map('', '<Space><Tab>', 'cgn', default_opts)
-
 -- Ranger
 map('', '<leader>n', ':Ranger<CR>', default_opts)
 map('', '<leader>r', ':RangerWorkingDirectory<CR>', default_opts)

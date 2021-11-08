@@ -20,8 +20,7 @@ lsp_installer.on_server_ready(function(server)
                 },
             },
         }
-    end
-    if server.name == "rust_analyzer" then
+    elseif server.name == "rust_analyzer" then
         opts.settings = {
             ["rust-analyzer"] = {
                 checkOnSave = {
@@ -32,6 +31,20 @@ lsp_installer.on_server_ready(function(server)
                 }
             }
         }
+    elseif server.name == "omnisharp" then
+        local on_attach = function(_, bufnr)
+            local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+            -- Mappings.
+            local mapping_opts = { noremap = true, silent = true }
+            vim.cmd [[ autocmd CursorHold *.cs :OmniSharpTypeLookup]]
+            buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
+            buf_set_keymap('n', 'gi', ':OmniSharpFindImplementations<CR>', mapping_opts)
+            buf_set_keymap('n', 'gu', ':OmniSharpFindUsages<CR>', mapping_opts)
+            buf_set_keymap('n', 'od', ':OmniSharpDocumentation<CR>', mapping_opts)
+            buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
+        end
+        opts.on_attach = on_attach
     end
 	server:setup(opts)
 end)

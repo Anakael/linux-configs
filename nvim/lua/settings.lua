@@ -8,6 +8,7 @@ opt.swapfile = false
 opt.showcmd = true
 opt.hidden = true
 opt.undofile = true
+opt.wildmode = 'longest:full,full'
 
 opt.autoindent = true
 opt.smartindent = true
@@ -50,7 +51,9 @@ g.tagbar_compact = 1
 -- g.cpp_concepts_highlight = 1
 
 g.OmniSharp_highlighting = 0
-g.OmniSharp_server_path = '/usr/bin/omnisharp'
+g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/lsp_servers/omnisharp/omnisharp/run'
+g.OmniSharp_selector_ui = 'clap'
+g.OmniSharp_selector_findusages = 'clap'
 
 g.ranger_replace_netrw = true
 g.ranger_map_keys = false

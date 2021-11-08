@@ -6,6 +6,11 @@ return require('packer').startup(function()
     use 'williamboman/nvim-lsp-installer'
     use 'arkav/lualine-lsp-progress'
 
+    -- language
+	use 'OmniSharp/omnisharp-vim'
+
+	use 'cespare/vim-toml'
+
 	-- code actions
     use 'RishabhRD/popfix'
     use 'RishabhRD/nvim-lsputils'
@@ -31,15 +36,11 @@ return require('packer').startup(function()
 	use 'python-rope/ropevim'
 	use 'itchyny/vim-cursorword'
 	use 'numToStr/Comment.nvim'
-	use 'janko-m/vim-test'
-	use 'OmniSharp/omnisharp-vim'
-	use 'rust-lang/rust.vim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-	use 'cespare/vim-toml'
     use { 'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
-	use 'mg979/docgen.vim'
 	use { 'francoiscabrol/ranger.vim', requires = {'rbgrouleff/bclose.vim'}}
 	use 'aklt/plantuml-syntax'
 	use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+    use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
 
 end)
