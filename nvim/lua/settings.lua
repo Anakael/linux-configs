@@ -23,6 +23,7 @@ opt.number = true
 opt.clipboard = 'unnamedplus'
 opt.spell = false
 opt.langmap = 'ЙЦУКЕНГШЩФЫВАПРОЛДЖЯЧСМИТЬ;QWFPGJLUYARSTDHNEIOZXCVBKM,йцукенгшщфывапролджячсмить;qwfpgjluyarstdhneiozxcvbkm'
+opt.updatetime = 300
 
 opt.background = 'dark'
 opt.termguicolors = true
@@ -64,16 +65,6 @@ require('lualine').setup {
     theme = 'codedark'
   },
   sections = {
-    lualine_b = {'branch', 'diff',
-                {'diagnostics',
-                    sources={'nvim_lsp'},
-                    symbols = {
-                        error = ' ', -- xf659
-                        warn = ' ', -- xf529
-                        info = ' ', -- xf7fc
-                        hint = ' ', -- xf838
-                    }
-                }},
     lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
     lualine_x = { },
     lualine_y = { },

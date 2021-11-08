@@ -31,6 +31,25 @@ lsp_installer.on_server_ready(function(server)
                 }
             }
         }
+        require('rust-tools').setup{
+            tools = {
+                inlay_hints = {
+                    parameter_hints_prefix = '🠔  ',
+                    other_hints_prefix = '⇨  '
+                }
+            },
+            server = {
+                on_attach = function(_, bufnr)
+                    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                    local default_opts = { noremap = true, silent = true }
+                    buf_set_keymap('n', '<leader>em', '<cmd>lua require("rust-tools.expand_macro").expand_macro()<CR>', default_opts)
+
+                end,
+                cmd = server._default_options.cmd,
+                settings = opts.settings,
+            }
+        }
+        return
     elseif server.name == "omnisharp" then
         local on_attach = function(_, bufnr)
             local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -43,6 +62,7 @@ lsp_installer.on_server_ready(function(server)
             buf_set_keymap('n', 'gu', ':OmniSharpFindUsages<CR>', mapping_opts)
             buf_set_keymap('n', 'od', ':OmniSharpDocumentation<CR>', mapping_opts)
             buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
+            buf_set_keymap('', '<C-\\>', ':OmniSharpSignatureHelp<CR>', mapping_opts)
         end
         opts.on_attach = on_attach
     end
@@ -90,5 +110,8 @@ cmp.setup {
                 luasnip = '[LuaSnip]',
                 path = '[Path]',
         })}),
+    },
+    experimental = {
+        ghost_text = true
     }
 }

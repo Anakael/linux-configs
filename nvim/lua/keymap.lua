@@ -20,6 +20,7 @@ map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
 map('n', 'gi', '<cmd>lua vim.lsp.buf.implemenation()<CR>', default_opts)
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', default_opts)
 map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
+map('v', '<space>a', ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", default_opts)
 map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
 map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
 cmd 'command Format :lua vim.lsp.buf.formatting()<CR>'

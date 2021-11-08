@@ -8,6 +8,7 @@ return require('packer').startup(function()
 
     -- language
 	use 'OmniSharp/omnisharp-vim'
+	use { 'simrat39/rust-tools.nvim', requires = { 'nvim-lua/popup.nvim' }}
 
 	use 'cespare/vim-toml'
 
@@ -25,7 +26,6 @@ return require('packer').startup(function()
 
 	-- misc
 	use 'neutaaaaan/iosvkem'
-	use 'jiangmiao/auto-pairs'
     use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
 	use 'majutsushi/tagbar'
 	use 'tpope/vim-surround'
