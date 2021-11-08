@@ -18,14 +18,13 @@ opt.tabstop = 4
 
 opt.signcolumn = 'yes'
 opt.showmatch = true
-opt.cursorline = true
+opt.cursorline = false
 opt.number = true
 opt.clipboard = 'unnamedplus'
 opt.spell = false
 opt.langmap = 'ЙЦУКЕНГШЩФЫВАПРОЛДЖЯЧСМИТЬ;QWFPGJLUYARSTDHNEIOZXCVBKM,йцукенгшщфывапролджячсмить;qwfpgjluyarstdhneiozxcvbkm'
 opt.updatetime = 300
 
-opt.background = 'dark'
 opt.termguicolors = true
 opt.colorcolumn = '100'
 opt.wrap = false

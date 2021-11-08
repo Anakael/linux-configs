@@ -25,7 +25,6 @@ return require('packer').startup(function()
     use 'onsails/lspkind-nvim'
 
 	-- misc
-	use 'neutaaaaan/iosvkem'
     use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
 	use 'majutsushi/tagbar'
 	use 'tpope/vim-surround'
@@ -42,5 +41,6 @@ return require('packer').startup(function()
 	use 'aklt/plantuml-syntax'
 	use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
     use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
+    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
 end)
