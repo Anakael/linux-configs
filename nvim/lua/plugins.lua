@@ -44,5 +44,6 @@ return require('packer').startup(function()
     -- use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use 'folke/lsp-colors.nvim'
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
+    use 'cohama/lexima.vim'
 
 end)
