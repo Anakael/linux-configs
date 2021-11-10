@@ -62,7 +62,7 @@ lsp_installer.on_server_ready(function(server)
             buf_set_keymap('n', 'gu', ':OmniSharpFindUsages<CR>', mapping_opts)
             buf_set_keymap('n', 'od', ':OmniSharpDocumentation<CR>', mapping_opts)
             buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
-            buf_set_keymap('', '<C-\\>', ':OmniSharpSignatureHelp<CR>', mapping_opts)
+            buf_set_keymap('', '<leader>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
         end
         opts.on_attach = on_attach
     end

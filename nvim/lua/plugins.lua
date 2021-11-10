@@ -41,6 +41,8 @@ return require('packer').startup(function()
 	use 'aklt/plantuml-syntax'
 	use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
     use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
-    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    -- use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    use 'folke/lsp-colors.nvim'
+    use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
 
 end)

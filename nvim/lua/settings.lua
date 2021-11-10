@@ -70,6 +70,34 @@ require('lualine').setup {
   }
 }
 
+-- Just wait
+-- require("bufferline").setup{
+--     options = {
+--         numbers = function(opts)
+--             return string.format('%s', opts.ordinal)
+--         end,
+--         show_buffer_close_icons = false,
+--         show_close_icon = false,
+--         show_tab_indicators = false,
+--         tab_size = 1,
+--         diagnostics = "nvim_lsp",
+--         diagnostics_update_in_insert = true,
+--         diagnostics_indicator = function(count, level, diagnostics_dict, context)
+--           local s = ""
+--           for e, n in pairs(diagnostics_dict) do
+--             local sym = e == "error" and " "
+--               or (e == "warning" and " " or "" )
+--             s = s .. n .. sym .. " "
+--           end
+--           print(s)
+--           if string.len(s) ~= 0 then
+--             s = string.sub(s, 1, -2)
+--           end
+--           return s
+--         end
+--     }
+-- }
+
 -- Treesitter
 require('nvim-treesitter.configs').setup{
     ensure_installed = {'python', 'c_sharp', 'rust', 'lua'},
@@ -85,3 +113,29 @@ require('Comment').setup{
     }
 }
 
+-- Luatab
+require('luatab').setup{
+    windowCount = function(index)
+        return index .. ' '
+    end,
+    title = function(bufnr)
+        local file = vim.fn.bufname(bufnr)
+        local buftype = vim.fn.getbufvar(bufnr, '&buftype')
+        local filetype = vim.fn.getbufvar(bufnr, '&filetype')
+
+        if buftype == 'help' then
+            return 'help:' .. vim.fn.fnamemodify(file, ':t:r')
+        elseif buftype == 'quickfix' then
+            return 'quickfix'
+        elseif filetype == 'TelescopePrompt' then
+            return 'Telescope'
+        elseif buftype == 'terminal' then
+            local _, mtch = string.match(file, "term:(.*):(%a+)")
+            return mtch ~= nil and mtch or vim.fn.fnamemodify(vim.env.SHELL, ':t')
+        elseif file == '' then
+            return '[Empty]'
+        else
+            return vim.fn.fnamemodify(file, ':p:h:t') .. '/' .. vim.fn.fnamemodify(file, ':t')
+        end
+    end
+}

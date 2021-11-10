@@ -1,6 +1,5 @@
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
-local cmd = vim.cmd
 
 vim.g.mapleader = ','
 
@@ -12,7 +11,8 @@ map('', '<right>', '', default_opts)
 
 -- common
 map('n', '<leader>w', ':w<CR>', default_opts)
-map('n', '<leader>e', ':tabe %<CR>', default_opts)
+map('n', '<leader>q', ':q<CR>', default_opts)
+map('n', 'te', ':tabe %<CR>', default_opts)
 map('n', '<F1>', ':noh<CR>', default_opts)
 
 -- lsp
@@ -22,8 +22,7 @@ map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', default_opts)
 map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('v', '<space>a', ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", default_opts)
 map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
-map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
-cmd 'command Format :lua vim.lsp.buf.formatting()<CR>'
+map('', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', default_opts)
 
 -- telescope
 map('n', '<leader>f', '<cmd>lua require("telescope.builtin").find_files()<CR>', default_opts)
@@ -44,3 +43,11 @@ map('n', '<C-L>', '<C-W><C-L>', default_opts)
 map('n', '<C-K>', '<C-W><C-K>', default_opts)
 map('n', '<C-H>', '<C-W><C-H>', default_opts)
 
+-- Tabs
+map('n', 'ta', ':RangerNewTab<CR>', default_opts)
+map('n', 'tq', ':tabclose<CR>', default_opts)
+map('n', 't1', '1gt', default_opts)
+map('n', 't2', '2gt', default_opts)
+map('n', 't3', '3gt', default_opts)
+map('n', 't4', '4gt', default_opts)
+map('n', 't5', '5gt', default_opts)

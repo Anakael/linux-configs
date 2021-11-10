@@ -52,7 +52,7 @@ if (has('termguicolors') && &termguicolors) || has('gui_running')
   hi Terminal guifg=#dddddd guibg=NONE gui=NONE cterm=NONE
   hi Normal guifg=#dddddd guibg=#1c1d1f gui=NONE cterm=NONE
   hi Terminal guifg=#dddddd guibg=#1c1d1f gui=NONE cterm=NONE
-  hi ColorColumn guifg=NONE guibg=#1c1c1c gui=NONE cterm=NONE
+  hi ColorColumn guifg=NONE guibg=#303030  gui=NONE cterm=NONE
   hi Conceal guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
   hi Cursor guifg=NONE guibg=NONE gui=reverse ctermfg=NONE ctermbg=NONE cterm=reverse
   hi CursorColumn guifg=NONE guibg=#303030 gui=NONE cterm=NONE
