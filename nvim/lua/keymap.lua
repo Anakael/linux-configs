@@ -23,7 +23,7 @@ map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('v', '<space>a', ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", default_opts)
 map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
 map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
-map('', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', default_opts)
+map('', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', default_opts)
 
 -- telescope
 map('n', '<leader>f', '<cmd>lua require("telescope.builtin").find_files()<CR>', default_opts)
