@@ -15,6 +15,7 @@ opt.smartindent = true
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.tabstop = 4
+opt.foldenable = false
 
 opt.signcolumn = 'yes'
 opt.showmatch = true
@@ -42,13 +43,6 @@ g.instant_markdown_mathjax = 1
 g.vim_markdown_math = 1
 g.tagbar_position = 'left'
 g.tagbar_compact = 1
-
--- CPP
--- g.cpp_class_scope_highlight = 1
--- g.cpp_member_variable_highlight = 1
--- g.cpp_class_decl_highlight = 1
--- g.cpp_experimental_simple_template_highlight = 1
--- g.cpp_concepts_highlight = 1
 
 g.OmniSharp_highlighting = 0
 g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/lsp_servers/omnisharp/omnisharp/run'
@@ -100,7 +94,7 @@ require('lualine').setup {
 
 -- Treesitter
 require('nvim-treesitter.configs').setup{
-    ensure_installed = {'python', 'c_sharp', 'rust', 'lua'},
+    ensure_installed = {'python', 'c_sharp', 'rust', 'lua', 'cpp'},
     highlight = {
         enable = true,
     }
@@ -109,7 +103,7 @@ require('nvim-treesitter.configs').setup{
 -- Comment
 require('Comment').setup{
     opleader = {
-        line = 'cc'
+        block = 'cc'
     }
 }
 
@@ -139,3 +133,7 @@ require('luatab').setup{
         end
     end
 }
+
+-- Dap
+require('dapui').setup()
+require("nvim-dap-virtual-text").setup()

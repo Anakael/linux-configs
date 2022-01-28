@@ -6,6 +6,10 @@ return require('packer').startup(function()
     use 'williamboman/nvim-lsp-installer'
     use 'arkav/lualine-lsp-progress'
 
+	-- debug
+    use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
+    use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
+
     -- language
 	use 'OmniSharp/omnisharp-vim'
 	use { 'simrat39/rust-tools.nvim', requires = { 'nvim-lua/popup.nvim' }}
@@ -14,7 +18,7 @@ return require('packer').startup(function()
 
 	-- code actions
     use 'RishabhRD/popfix'
-    use 'RishabhRD/nvim-lsputils'
+    -- use 'RishabhRD/nvim-lsputils'
 
 	-- cmp
     use 'hrsh7th/nvim-cmp'
@@ -30,9 +34,8 @@ return require('packer').startup(function()
 	use 'tpope/vim-surround'
 	use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
-	use 'plasticboy/vim-markdown'
+	use { 'plasticboy/vim-markdown', requires = { 'godlygeek/tabular' }}
 	use 'lervag/vimtex'
-	use 'python-rope/ropevim'
 	use 'itchyny/vim-cursorword'
 	use 'numToStr/Comment.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -45,5 +48,4 @@ return require('packer').startup(function()
     use 'folke/lsp-colors.nvim'
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
     use 'cohama/lexima.vim'
-
 end)

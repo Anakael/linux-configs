@@ -62,14 +62,14 @@ lsp_installer.on_server_ready(function(server)
             buf_set_keymap('n', 'gu', ':OmniSharpFindUsages<CR>', mapping_opts)
             buf_set_keymap('n', 'od', ':OmniSharpDocumentation<CR>', mapping_opts)
             buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
-            buf_set_keymap('', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
+            buf_set_keymap('n', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
         end
         opts.on_attach = on_attach
     end
 	server:setup(opts)
 end)
 
-vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.codeAction').code_action_handler
+-- vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.codeAction').code_action_handler
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
       -- Disable signs
