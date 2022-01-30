@@ -1,5 +1,6 @@
 require('plugins')
 require('settings')
 require('lsp')
+require('lua')
 require('keymap')
 require('dap_config')
