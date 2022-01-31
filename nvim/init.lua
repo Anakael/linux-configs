@@ -1,6 +1,6 @@
 require('plugins')
 require('settings')
 require('lsp')
-require('lua')
+require('nvim_cmp')
 require('keymap')
 require('dap_config')

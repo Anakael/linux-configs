@@ -136,4 +136,8 @@ require('luatab').setup{
 
 -- Dap
 require('dapui').setup()
-require("nvim-dap-virtual-text").setup()
+require('nvim-dap-virtual-text').setup()
+
+-- File manager
+require('telescope').setup()
+require('telescope').load_extension('file_browser')

@@ -55,4 +55,7 @@ return require('packer').startup(function()
     use 'folke/lsp-colors.nvim'
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
     use 'cohama/lexima.vim'
+
+    -- file manager
+    use { "nvim-telescope/telescope-file-browser.nvim" }
 end)

@@ -34,9 +34,8 @@ map('n', '<leader>b', '<cmd>lua require("telescope.builtin").buffers()<CR>', def
 -- tagbar
 map('', '<F8>', ':TagbarToggle<CR>', default_opts)
 
--- Ranger
-map('', '<leader>n', ':Ranger<CR>', default_opts)
-map('', '<leader>r', ':RangerWorkingDirectory<CR>', default_opts)
+-- File manager
+map('', '<leader>n', ':Telescope file_browser path=%:p:h<CR>', default_opts)
 
 -- Windows moving
 map('n', '<C-J>', '<C-W><C-J>', default_opts)
@@ -45,7 +44,7 @@ map('n', '<C-K>', '<C-W><C-K>', default_opts)
 map('n', '<C-H>', '<C-W><C-H>', default_opts)
 
 -- Tabs
-map('n', 'ta', ':RangerNewTab<CR>', default_opts)
+map('n', 'ta', ':tabnew %<CR>', default_opts)
 map('n', 'tq', ':tabclose<CR>', default_opts)
 map('n', 't1', '1gt', default_opts)
 map('n', 't2', '2gt', default_opts)
