@@ -23,13 +23,13 @@ cmp.setup {
         ['<CR>'] = cmp.mapping.confirm(),
         ['<Tab>'] = cmp.mapping(
           function(fallback)
-            cmp_ultisnips_mappings.compose({ "jump_forwards", "select_next_item" })(fallback)
+            cmp_ultisnips_mappings.compose({ 'select_next_item', 'jump_forwards' })(fallback)
           end,
           { "i", "s" }
         ),
         ['<S-Tab>'] = cmp.mapping(
           function(fallback)
-            cmp_ultisnips_mappings.compose({ "jump_backwards", "select_prev_item" })(fallback)
+            cmp_ultisnips_mappings.compose({ 'select_prev_item', 'jump_backwards' })(fallback)
           end,
           { "i", "s" }
         ),

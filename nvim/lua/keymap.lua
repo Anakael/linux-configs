@@ -16,7 +16,6 @@ map('n', '<F1>', ':noh<CR>', default_opts)
 
 -- lsp
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
-map('n', 'gi', '<cmd>lua vim.lsp.buf.implemenation()<CR>', default_opts)
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', default_opts)
 map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('v', '<space>a', ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", default_opts)
@@ -29,7 +28,10 @@ map('', '<space>t', ':ClangdSwitchSourceHeader<CR>', default_opts)
 map('n', '<leader>f', '<cmd>lua require("telescope.builtin").find_files()<CR>', default_opts)
 map('n', '<leader>s', '<cmd>lua require("telescope.builtin").grep_string()<CR>', default_opts)
 map('n', '<leader><S-s>', '<cmd>lua require("telescope.builtin").live_grep()<CR>', default_opts)
-map('n', '<leader>b', '<cmd>lua require("telescope.builtin").buffers()<CR>', default_opts)
+map('n', 'gu', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', default_opts)
+map('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>', default_opts)
+map('n', '<leader>d', '<cmd>lua require("telescope.builtin").diagnostics()<CR>', default_opts)
+map('n', '<leader>gs', '<cmd>lua require("telescope.builtin").git_status()<CR>', default_opts)
 
 -- tagbar
 map('', '<F8>', ':TagbarToggle<CR>', default_opts)
@@ -59,4 +61,4 @@ map('n', '<F9>', '<cmd>lua require("dap").toggle_breakpoint()<CR>', default_opts
 map('n', '<F10>', '<cmd>lua require("dap").step_over()<CR>', default_opts)
 map('n', '<F11>', '<cmd>lua require("dap").step_into()<CR>', default_opts)
 map('n', '<F12>', '<cmd>lua require("dap").step_out()<CR>', default_opts)
-map('n', '<leader>d', '<cmd>lua require("dapui").toggle()<CR>', default_opts)
+map('n', '<leader>g', '<cmd>lua require("dapui").toggle()<CR>', default_opts)

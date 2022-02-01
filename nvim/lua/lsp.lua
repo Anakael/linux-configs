@@ -56,11 +56,9 @@ lsp_installer.on_server_ready(function(server)
 
             -- Mappings.
             local mapping_opts = { noremap = true, silent = true }
-            vim.cmd [[ autocmd CursorHold *.cs :OmniSharpTypeLookup]]
+            buf_set_keymap('n', '<space>t', ':OmniSharpTypeLookup<CR>', mapping_opts)
             buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
-            buf_set_keymap('n', 'gi', ':OmniSharpFindImplementations<CR>', mapping_opts)
-            buf_set_keymap('n', 'gu', ':OmniSharpFindUsages<CR>', mapping_opts)
-            buf_set_keymap('n', 'od', ':OmniSharpDocumentation<CR>', mapping_opts)
+            buf_set_keymap('', '<leader>d', ':OmniSharpDocumentation<CR>', mapping_opts)
             buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
             buf_set_keymap('', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
         end

@@ -103,7 +103,7 @@ require('nvim-treesitter.configs').setup{
 -- Comment
 require('Comment').setup{
     opleader = {
-        block = 'cc'
+        lines = 'cc'
     }
 }
 
@@ -138,6 +138,7 @@ require('luatab').setup{
 require('dapui').setup()
 require('nvim-dap-virtual-text').setup()
 
--- File manager
+-- Telecope
 require('telescope').setup()
+-- File manager
 require('telescope').load_extension('file_browser')
