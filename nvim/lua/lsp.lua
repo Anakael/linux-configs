@@ -58,9 +58,9 @@ lsp_installer.on_server_ready(function(server)
             local mapping_opts = { noremap = true, silent = true }
             buf_set_keymap('n', '<space>t', ':OmniSharpTypeLookup<CR>', mapping_opts)
             buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
-            buf_set_keymap('', '<leader>d', ':OmniSharpDocumentation<CR>', mapping_opts)
+            buf_set_keymap('n', '<space>d', ':OmniSharpDocumentation<CR>', mapping_opts)
             buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
-            buf_set_keymap('', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
+            buf_set_keymap('n', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
         end
         opts.on_attach = on_attach
     end
