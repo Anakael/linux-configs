@@ -46,11 +46,6 @@ g.tagbar_compact = 1
 
 g.OmniSharp_highlighting = 0
 g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/lsp_servers/omnisharp/omnisharp/run'
-g.OmniSharp_selector_ui = 'clap'
-g.OmniSharp_selector_findusages = 'clap'
-
-g.ranger_replace_netrw = true
-g.ranger_map_keys = false
 
 -- Lualine
 require('lualine').setup {
@@ -140,5 +135,9 @@ require('nvim-dap-virtual-text').setup()
 
 -- Telecope
 require('telescope').setup()
--- File manager
+g.netrw_banner = 0
 require('telescope').load_extension('file_browser')
+
+-- Tests
+g['test#csharp#runner'] = 'dotnettest'
+g['test#strategy'] = 'dispatch'
