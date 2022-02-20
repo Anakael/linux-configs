@@ -9,10 +9,12 @@ return require('packer').startup(function()
 	-- debug
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
+    use 'nvim-telescope/telescope-dap.nvim'
 
     -- run
     use 'vim-test/vim-test'
     use 'tpope/vim-dispatch'
+    use { "rcarriga/vim-ultest", requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
 
     -- language
     use 'OmniSharp/omnisharp-vim'

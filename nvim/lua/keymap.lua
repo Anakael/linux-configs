@@ -19,8 +19,8 @@ map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', default_opts)
 map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('v', '<space>a', ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", default_opts)
-map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
-map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
+map('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', default_opts)
+map('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', default_opts)
 map('', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', default_opts)
 map('', '<space>t', ':ClangdSwitchSourceHeader<CR>', default_opts)
 
@@ -55,7 +55,7 @@ map('n', 't4', '4gt', default_opts)
 map('n', 't5', '5gt', default_opts)
 
 -- Dap
-map('n', '<C-F5>', '<cmd>lua require("dap").terminate()<CR>', default_opts)
+map('n', '<F29>', '<cmd>lua require("dap").terminate()<CR>', default_opts) -- C-F5
 map('n', '<F5>', '<cmd>lua require("dap").continue()<CR>', default_opts)
 map('n', '<F9>', '<cmd>lua require("dap").toggle_breakpoint()<CR>', default_opts)
 map('n', '<F10>', '<cmd>lua require("dap").step_over()<CR>', default_opts)

@@ -130,13 +130,45 @@ require('luatab').setup{
 }
 
 -- Dap
-require('dapui').setup()
+require('dapui').setup{
+    sidebar = {
+        elements = {
+          { id = "scopes", size = 00.4 },
+          { id = "watches", size = 00.6 }
+        },
+        size = 50
+    }
+}
 require('nvim-dap-virtual-text').setup()
+
 
 -- Telecope
 require('telescope').setup()
 g.netrw_banner = 0
 require('telescope').load_extension('file_browser')
+require('telescope').load_extension('dap')
+
+local previewers = require("telescope.previewers")
+local putils = require("telescope.previewers.utils")
+local pfiletype = require("plenary.filetype")
+
+local new_maker = function(filepath, bufnr, opts)
+  opts = opts or {}
+  if opts.use_ft_detect == nil then
+    local ft = pfiletype.detect(filepath)
+    if ft == "cs" then
+        opts.use_ft_detect = false
+        putils.regex_highlighter(bufnr, ft)
+    end
+  end
+  previewers.buffer_previewer_maker(filepath, bufnr, opts)
+end
+
+require("telescope").setup {
+  defaults = {
+    buffer_previewer_maker = new_maker,
+  }
+}
 
 -- Tests
 g['test#csharp#runner'] = 'dotnettest'
