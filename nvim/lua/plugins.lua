@@ -38,12 +38,16 @@ return require('packer').startup(function()
     use 'honza/vim-snippets'
     use 'quangnguyen30192/cmp-nvim-ultisnips'
 
+    -- git
+    use 'tpope/vim-fugitive'
+    use 'kdheepak/lazygit.nvim'
+    use 'lewis6991/gitsigns.nvim'
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
 	-- misc
     use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
     use 'majutsushi/tagbar'
     use 'tpope/vim-surround'
-    use 'tpope/vim-fugitive'
-    use 'airblade/vim-gitgutter'
     use { 'plasticboy/vim-markdown', requires = { 'godlygeek/tabular' }}
     use 'lervag/vimtex'
     use 'itchyny/vim-cursorword'
@@ -54,7 +58,6 @@ return require('packer').startup(function()
     use 'aklt/plantuml-syntax'
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
     use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
-    -- use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use 'folke/lsp-colors.nvim'
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
     use 'cohama/lexima.vim'

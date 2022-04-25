@@ -30,6 +30,7 @@ opt.termguicolors = true
 opt.colorcolumn = '100'
 opt.wrap = false
 opt.joinspaces = false
+opt.spelllang= 'en,ru_yo'
 
 
 cmd [[
@@ -44,8 +45,18 @@ g.vim_markdown_math = 1
 g.tagbar_position = 'left'
 g.tagbar_compact = 1
 
+-- latex
+g.Tex_GotoError = 0
+g.vimtex_quickfix_enabled = 0
+g.vimtex_compiler_latexmk = {
+    options = {
+        '-pdf',
+        '-shell-escape'
+    }
+}
+
 g.OmniSharp_highlighting = 0
-g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/lsp_servers/omnisharp/omnisharp/run'
+g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp'
 
 -- Lualine
 require('lualine').setup {
@@ -58,34 +69,6 @@ require('lualine').setup {
     lualine_y = { },
   }
 }
-
--- Just wait
--- require("bufferline").setup{
---     options = {
---         numbers = function(opts)
---             return string.format('%s', opts.ordinal)
---         end,
---         show_buffer_close_icons = false,
---         show_close_icon = false,
---         show_tab_indicators = false,
---         tab_size = 1,
---         diagnostics = "nvim_lsp",
---         diagnostics_update_in_insert = true,
---         diagnostics_indicator = function(count, level, diagnostics_dict, context)
---           local s = ""
---           for e, n in pairs(diagnostics_dict) do
---             local sym = e == "error" and " "
---               or (e == "warning" and " " or "" )
---             s = s .. n .. sym .. " "
---           end
---           print(s)
---           if string.len(s) ~= 0 then
---             s = string.sub(s, 1, -2)
---           end
---           return s
---         end
---     }
--- }
 
 -- Treesitter
 require('nvim-treesitter.configs').setup{
@@ -148,28 +131,27 @@ g.netrw_banner = 0
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('dap')
 
-local previewers = require("telescope.previewers")
-local putils = require("telescope.previewers.utils")
-local pfiletype = require("plenary.filetype")
-
-local new_maker = function(filepath, bufnr, opts)
-  opts = opts or {}
-  if opts.use_ft_detect == nil then
-    local ft = pfiletype.detect(filepath)
-    if ft == "cs" then
-        opts.use_ft_detect = false
-        putils.regex_highlighter(bufnr, ft)
-    end
-  end
-  previewers.buffer_previewer_maker(filepath, bufnr, opts)
-end
-
-require("telescope").setup {
-  defaults = {
-    buffer_previewer_maker = new_maker,
-  }
-}
-
 -- Tests
 g['test#csharp#runner'] = 'dotnettest'
 g['test#strategy'] = 'dispatch'
+
+--git
+require('gitsigns').setup()
+local cb = require'diffview.config'.diffview_callback
+require('diffview').setup{
+    file_panel = {
+        width = 45
+    },
+    key_bindings = {
+        file_panel = {
+            ["e"] = cb("goto_file_edit"),
+            ["o"] = cb("focus_entry"),
+            ["<space>"] = cb("toggle_stage_entry"),
+            ["j"] = cb("select_next_entry"),
+            ["k"] = cb("select_prev_entry"),
+        }
+    }
+}
+-- lazygit
+g.lazygit_floating_window_scaling_factor = 1
+

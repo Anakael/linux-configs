@@ -140,6 +140,7 @@ if (has('termguicolors') && &termguicolors) || has('gui_running')
   hi rstCitationReference guifg=#b77fdb guibg=NONE gui=NONE cterm=NONE
   hi diffFile guifg=#5688af guibg=NONE gui=NONE cterm=NONE
   hi diffAdded guifg=#00aa80 guibg=NONE gui=NONE cterm=NONE
+  hi diffChanged guifg=#80aacc guibg=NONE gui=NONE cterm=NONE
   hi diffRemoved guifg=#d02b61 guibg=NONE gui=NONE cterm=NONE
   hi diffLine guifg=#b77fdb guibg=NONE gui=NONE cterm=NONE
   if !s:italics
