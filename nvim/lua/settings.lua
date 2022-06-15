@@ -9,6 +9,7 @@ opt.showcmd = true
 opt.hidden = true
 opt.undofile = true
 opt.wildmode = 'longest:full,full'
+opt.laststatus = 3
 
 opt.autoindent = true
 opt.smartindent = true
@@ -137,21 +138,32 @@ g['test#strategy'] = 'dispatch'
 
 --git
 require('gitsigns').setup()
-local cb = require'diffview.config'.diffview_callback
+local actions = require("diffview.actions")
 require('diffview').setup{
     file_panel = {
-        width = 45
+        win_config = {
+            width = 45
+        }
     },
     key_bindings = {
         file_panel = {
-            ["e"] = cb("goto_file_edit"),
-            ["o"] = cb("focus_entry"),
-            ["<space>"] = cb("toggle_stage_entry"),
-            ["j"] = cb("select_next_entry"),
-            ["k"] = cb("select_prev_entry"),
+            ["e"] = actions.goto_file_edit,
+            ["o"] = actions.focus_entry,
+            ["<space>"] = actions.toggle_stage_entry,
+            ["j"] = actions.select_next_entry,
+            ["k"] = actions.select_prev_entry,
         }
     }
 }
 -- lazygit
 g.lazygit_floating_window_scaling_factor = 1
 
+-- Copen
+
+local qf_size = "50"
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function()
+        cmd(qf_size .. "wincmd_")
+    end
+})
