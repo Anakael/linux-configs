@@ -14,7 +14,6 @@ return require('packer').startup(function()
     -- run
     use 'vim-test/vim-test'
     use 'tpope/vim-dispatch'
-    use { "rcarriga/vim-ultest", requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
 
     -- language
     use 'OmniSharp/omnisharp-vim'

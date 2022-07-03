@@ -115,12 +115,22 @@ require('luatab').setup{
 
 -- Dap
 require('dapui').setup{
-    sidebar = {
-        elements = {
-          { id = "scopes", size = 00.4 },
-          { id = "watches", size = 00.6 }
+    layouts = {
+        {
+            elements = {
+              { id = "scopes", size = 0.4 },
+              { id = "watches", size = 0.6 }
+            },
+            size = 50,
+            position = "left"
         },
-        size = 50
+        {
+            elements = {
+              "repl",
+            },
+            size = 10,
+            position = "bottom"
+        }
     }
 }
 require('nvim-dap-virtual-text').setup()
