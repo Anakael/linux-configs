@@ -5,6 +5,7 @@ return require('packer').startup(function()
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
     use 'arkav/lualine-lsp-progress'
+    use 'ray-x/lsp_signature.nvim'
 
 	-- debug
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
@@ -60,6 +61,7 @@ return require('packer').startup(function()
     use 'folke/lsp-colors.nvim'
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
     use 'cohama/lexima.vim'
+    use 'EdenEast/nightfox.nvim'
 
     -- file manager
     use { "nvim-telescope/telescope-file-browser.nvim" }

@@ -37,7 +37,6 @@ opt.spelllang= 'en,ru_yo'
 cmd [[
     filetype plugin on
     syntax enable
-	colorscheme Iosvkem
 ]]
 
 -- g.airline_theme='onedark'
@@ -177,3 +176,15 @@ vim.api.nvim_create_autocmd("FileType", {
         cmd(qf_size .. "wincmd_")
     end
 })
+
+-- Nightfox
+require('nightfox').setup({
+    palettes = {
+        nightfox = {
+            bg1 = "#1d1f21",
+            bg2 = "#303030"
+        }
+    }
+})
+
+cmd 'colorscheme nightfox'
