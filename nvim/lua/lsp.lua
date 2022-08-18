@@ -1,78 +1,86 @@
-local lsp_installer = require 'nvim-lsp-installer'
+require('mason').setup()
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'css-lsp',
+        'html-lsp',
+        'jsonls',
+        'sumneko_lua',
+        'netcoredbg',
+        'omnisharp',
+        'rust_analyzer',
+        'dockerfile',
+        'typescript-language-server'
+    }
+})
 
-lsp_installer.on_server_ready(function(server)
-	local opts = {}
-    if server.name == "sumneko_lua" then
+local lsp_config = require('lspconfig')
 
-        opts.settings = {
-            Lua = {
-                diagnostics = {
-                    -- Get the language server to recognize the 'vim', 'use' global
-                    globals = {'vim', 'use'},
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true),
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {
-                    enable = false,
-                },
+lsp_config.sumneko_lua.setup({
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim', 'use' },
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
             },
         }
-    elseif server.name == "rust_analyzer" then
-        opts.settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy"
-                },
-                cargo = {
-                    allFeatures = true
-                }
-            }
-        }
-        require('rust-tools').setup{
-            tools = {
-                inlay_hints = {
-                    parameter_hints_prefix = '🠔  ',
-                    other_hints_prefix = '⇨  '
-                }
-            },
-            server = {
-                on_attach = function(_, bufnr)
-                    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-                    local default_opts = { noremap = true, silent = true }
-                    buf_set_keymap('n', '<leader>em', '<cmd>lua require("rust-tools.expand_macro").expand_macro()<CR>', default_opts)
+    }
+})
 
-                end,
-                cmd = server._default_options.cmd,
-                settings = opts.settings,
+lsp_config.rust_analyzer.setup({
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy"
+            },
+            cargo = {
+                allFeatures = true
             }
         }
-        return
-    elseif server.name == "omnisharp" then
-        local on_attach = function(_, bufnr)
+    }
+})
+
+require('rust-tools').setup({
+    tools = {
+        inlay_hints = {
+            parameter_hints_prefix = '🠔  ',
+            other_hints_prefix = '⇨  '
+        }
+    },
+    server = {
+        on_attach = function(_, bufnr)
             local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-            -- Mappings.
-            local mapping_opts = { noremap = true, silent = true }
-            buf_set_keymap('n', '<space>t', ':OmniSharpTypeLookup<CR>', mapping_opts)
-            buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
-            buf_set_keymap('n', '<space>d', ':OmniSharpDocumentation<CR>', mapping_opts)
-            buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
-            buf_set_keymap('n', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
-        end
-        opts.on_attach = on_attach
+            local default_opts = { noremap = true, silent = true }
+            buf_set_keymap('n', '<leader>em', '<cmd>lua require("rust-tools.expand_macro").expand_macro()<CR>',
+                default_opts)
+        end,
+    }
+})
+
+lsp_config.omnisharp.setup({
+    on_attach = function(_, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+        local mapping_opts = { noremap = true, silent = true }
+        buf_set_keymap('n', '<space>t', ':OmniSharpTypeLookup<CR>', mapping_opts)
+        buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
+        buf_set_keymap('n', '<space>d', ':OmniSharpDocumentation<CR>', mapping_opts)
+        buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
+        buf_set_keymap('n', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
     end
-	server:setup(opts)
-end)
+})
 
 -- vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.codeAction').code_action_handler
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- Disable signs
-      signs = false,
-    }
+    -- Disable signs
+    signs = false,
+}
 )
 
 require("lsp_signature").setup({

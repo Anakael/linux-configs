@@ -2,16 +2,19 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
 	-- lsp
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
     use 'arkav/lualine-lsp-progress'
     use 'ray-x/lsp_signature.nvim'
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
-    use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
-    use 'nvim-telescope/telescope-dap.nvim'
     -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- wait for diagnostics in o#
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
     use 'j-hui/fidget.nvim'
+
+    -- dap
+    use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
+    use 'nvim-telescope/telescope-dap.nvim'
 
     -- run
     use 'vim-test/vim-test'
@@ -59,7 +62,7 @@ return require('packer').startup(function()
     use 'aklt/plantuml-syntax'
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
     use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
-    use 'folke/lsp-colors.nvim'
+    -- use 'folke/lsp-colors.nvim'
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
     use 'cohama/lexima.vim'
     use 'EdenEast/nightfox.nvim'
