@@ -64,7 +64,7 @@ require('lualine').setup {
     theme = 'codedark'
   },
   sections = {
-    lualine_c = { { 'filename', path = 1 }, 'lsp_progress' },
+    lualine_c = { { 'filename', path = 1 } },
     lualine_x = { },
     lualine_y = { },
   }
@@ -188,3 +188,12 @@ require('nightfox').setup({
 })
 
 cmd 'colorscheme nightfox'
+
+-- LSP Lines
+require('lsp_lines').setup()
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+-- Fidget
+require('fidget').setup{}

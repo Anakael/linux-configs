@@ -1,0 +1,14 @@
+{
+    "MsBuild": {
+        "UseLegacySdkResolver": true,
+        "EnablePackageAutoRestore": true
+    },
+    "FormattingOptions": {
+        "EnableEditorConfigSupport": true,
+        "OrganizeImports": true
+    },
+    "RoslynExtensionsOptions": {
+        "enableImportCompletion": true,
+        "enableAnalyzersSupport": true
+    }
+}

@@ -6,11 +6,12 @@ return require('packer').startup(function()
     use 'williamboman/nvim-lsp-installer'
     use 'arkav/lualine-lsp-progress'
     use 'ray-x/lsp_signature.nvim'
-
-	-- debug
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
     use 'nvim-telescope/telescope-dap.nvim'
+    -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- wait for diagnostics in o#
+    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    use 'j-hui/fidget.nvim'
 
     -- run
     use 'vim-test/vim-test'
@@ -62,6 +63,7 @@ return require('packer').startup(function()
     use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
     use 'cohama/lexima.vim'
     use 'EdenEast/nightfox.nvim'
+    use 'gpanders/editorconfig.nvim'
 
     -- file manager
     use { "nvim-telescope/telescope-file-browser.nvim" }
