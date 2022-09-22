@@ -9,8 +9,8 @@ return require('packer').startup(function()
     use 'ray-x/lsp_signature.nvim'
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- wait for diagnostics in o#
-    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
     use 'j-hui/fidget.nvim'
+    use { 'glepnir/lspsaga.nvim', branch = 'main' }
 
     -- dap
     use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
@@ -49,6 +49,7 @@ return require('packer').startup(function()
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
 	-- misc
+    use 'kyazdani42/nvim-web-devicons'
     use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
     use 'majutsushi/tagbar'
     use 'tpope/vim-surround'

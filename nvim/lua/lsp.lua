@@ -9,11 +9,15 @@ require('mason-lspconfig').setup({
         'omnisharp',
         'rust_analyzer',
         'dockerfile',
-        'typescript-language-server'
+        'typescript-language-server',
+        'pyright'
     }
 })
 
 local lsp_config = require('lspconfig')
+
+lsp_config.pyright.setup({})
+lsp_config.jsonls.setup({})
 
 lsp_config.sumneko_lua.setup({
     settings = {
@@ -31,17 +35,20 @@ lsp_config.sumneko_lua.setup({
     }
 })
 
-lsp_config.rust_analyzer.setup({
-    settings = {
-        ["rust-analyzer"] = {
-            checkOnSave = {
-                command = "clippy"
-            },
-            cargo = {
-                allFeatures = true
-            }
+local rust_analyzer_settings = {
+    ["rust-analyzer"] = {
+        checkOnSave = {
+            command = "clippy"
+        },
+        cargo = {
+            allFeatures = true
         }
     }
+}
+
+
+lsp_config.rust_analyzer.setup({
+    settings = rust_analyzer_settings
 })
 
 require('rust-tools').setup({
@@ -59,8 +66,10 @@ require('rust-tools').setup({
             buf_set_keymap('n', '<leader>em', '<cmd>lua require("rust-tools.expand_macro").expand_macro()<CR>',
                 default_opts)
         end,
-    }
+        settings = rust_analyzer_settings
+    },
 })
+
 
 lsp_config.omnisharp.setup({
     on_attach = function(_, bufnr)
@@ -68,8 +77,8 @@ lsp_config.omnisharp.setup({
 
         local mapping_opts = { noremap = true, silent = true }
         buf_set_keymap('n', '<space>t', ':OmniSharpTypeLookup<CR>', mapping_opts)
-        buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
-        buf_set_keymap('n', '<space>d', ':OmniSharpDocumentation<CR>', mapping_opts)
+        -- buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
+        -- buf_set_keymap('n', '<space>d', ':OmniSharpDocumentation<CR>', mapping_opts)
         buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
         buf_set_keymap('n', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
     end

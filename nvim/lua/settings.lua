@@ -56,7 +56,7 @@ g.vimtex_compiler_latexmk = {
 }
 
 g.OmniSharp_highlighting = 0
-g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp'
+g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/mason/bin/omnisharp'
 
 -- Lualine
 require('lualine').setup {
@@ -189,11 +189,12 @@ require('nightfox').setup({
 
 cmd 'colorscheme nightfox'
 
--- LSP Lines
-require('lsp_lines').setup()
-vim.diagnostic.config({
-  virtual_text = false,
-})
-
 -- Fidget
 require('fidget').setup{}
+
+-- Lsp saga
+require('lspsaga').init_lsp_saga({
+    code_action_lightbulb = {
+        enable = false
+    }
+})
