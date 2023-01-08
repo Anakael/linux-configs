@@ -1,15 +1,14 @@
 require('mason').setup()
 require('mason-lspconfig').setup({
     ensure_installed = {
-        'css-lsp',
-        'html-lsp',
+        'cssls',
+        'html',
         'jsonls',
         'sumneko_lua',
-        'netcoredbg',
         'omnisharp',
         'rust_analyzer',
-        'dockerfile',
-        'typescript-language-server',
+        'dockerls',
+        'tsserver',
         'pyright'
     }
 })
@@ -42,7 +41,10 @@ local rust_analyzer_settings = {
         },
         cargo = {
             allFeatures = true
-        }
+        },
+        rustfmt = {
+            extraArgs = { "+nightly" }
+        },
     }
 }
 

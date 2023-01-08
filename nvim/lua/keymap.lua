@@ -17,12 +17,7 @@ map('n', '<F2>', ':set spell!<CR>', default_opts)
 
 -- lsp
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
-map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', default_opts)
-map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', default_opts)
-map('v', '<space>a', ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", default_opts)
-map('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', default_opts)
-map('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', default_opts)
-map('', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', default_opts)
+map('', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', default_opts)
 map('', '<space>t', ':ClangdSwitchSourceHeader<CR>', default_opts)
 
 -- telescope
@@ -65,3 +60,13 @@ map('n', '<F10>', '<cmd>lua require("dap").step_over()<CR>', default_opts)
 map('n', '<F11>', '<cmd>lua require("dap").step_into()<CR>', default_opts)
 map('n', '<F12>', '<cmd>lua require("dap").step_out()<CR>', default_opts)
 map('n', '<F6>', '<cmd>lua require("dapui").toggle()<CR>', default_opts)
+
+-- Lspsaga
+map('n', '<space>a', '<cmd>Lspsaga code_action<CR>', default_opts)
+map('v', '<space>a', '<cmd>Lspsaga code_action<CR>', default_opts)
+map('n', '[g', '<cmd>Lspsaga diagnostic_jump_prev<CR>', default_opts)
+map('n', ']g', '<cmd>Lspsaga diagnostic_jump_next<CR>', default_opts)
+map('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', default_opts)
+map('n', '<A-t>', '<cmd>Lspsaga open_floaterm fish<CR>', default_opts)
+map('t', '<A-t>', [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], default_opts)
+map('n', '<space>d', '<cmd>Lspsaga hover_doc<CR>', default_opts)

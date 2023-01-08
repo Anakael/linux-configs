@@ -7,12 +7,12 @@ return require('packer').startup(function()
     use 'neovim/nvim-lspconfig'
     use 'arkav/lualine-lsp-progress'
     use 'ray-x/lsp_signature.nvim'
+    use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- wait for diagnostics in o#
     use 'j-hui/fidget.nvim'
     use { 'glepnir/lspsaga.nvim', branch = 'main' }
 
     -- dap
-    use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
     use 'nvim-telescope/telescope-dap.nvim'
 
