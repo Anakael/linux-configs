@@ -31,7 +31,7 @@ opt.termguicolors = true
 opt.colorcolumn = '100'
 opt.wrap = false
 opt.joinspaces = false
-opt.spelllang= 'en,ru_yo'
+opt.spelllang = 'en,ru_yo'
 
 
 cmd [[
@@ -60,33 +60,36 @@ g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/mason/bin/omnisharp'
 
 -- Lualine
 require('lualine').setup {
-  options = {
-    theme = 'codedark'
-  },
-  sections = {
-    lualine_c = { { 'filename', path = 1 } },
-    lualine_x = { },
-    lualine_y = { },
-  }
+    options = {
+        theme = 'codedark'
+    },
+    sections = {
+        lualine_c = { { 'filename', path = 1 } },
+        lualine_x = {},
+        lualine_y = {},
+    }
 }
 
 -- Treesitter
-require('nvim-treesitter.configs').setup{
-    ensure_installed = {'python', 'c_sharp', 'rust', 'lua', 'cpp'},
+require('nvim-treesitter.configs').setup {
+    ensure_installed = { 'python', 'c_sharp', 'rust', 'lua', 'cpp', 'tsx', 'scss', 'html' },
     highlight = {
+        enable = true,
+    },
+    autotag = {
         enable = true,
     }
 }
 
 -- Comment
-require('Comment').setup{
+require('Comment').setup {
     opleader = {
         lines = 'cc'
     }
 }
 
 -- Luatab
-require('luatab').setup{
+require('luatab').setup {
     windowCount = function(index)
         return index .. ' '
     end,
@@ -113,19 +116,19 @@ require('luatab').setup{
 }
 
 -- Dap
-require('dapui').setup{
+require('dapui').setup {
     layouts = {
         {
             elements = {
-              { id = "scopes", size = 0.4 },
-              { id = "watches", size = 0.6 }
+                { id = "scopes", size = 0.4 },
+                { id = "watches", size = 0.6 }
             },
             size = 50,
             position = "left"
         },
         {
             elements = {
-              "repl",
+                "repl",
             },
             size = 10,
             position = "bottom"
@@ -148,7 +151,7 @@ g['test#strategy'] = 'dispatch'
 --git
 require('gitsigns').setup()
 local actions = require("diffview.actions")
-require('diffview').setup{
+require('diffview').setup {
     file_panel = {
         win_config = {
             width = 45
@@ -190,7 +193,7 @@ require('nightfox').setup({
 cmd 'colorscheme nightfox'
 
 -- Fidget
-require('fidget').setup{}
+require('fidget').setup {}
 
 -- Lsp saga
 require('lspsaga').init_lsp_saga({
@@ -198,3 +201,4 @@ require('lspsaga').init_lsp_saga({
         enable = false
     }
 })
+
