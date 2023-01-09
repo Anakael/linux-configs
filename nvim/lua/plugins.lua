@@ -11,6 +11,7 @@ return require('packer').startup(function()
     -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- wait for diagnostics in o#
     use 'j-hui/fidget.nvim'
     use { 'glepnir/lspsaga.nvim', branch = 'main' }
+    use 'Hoffs/omnisharp-extended-lsp.nvim'
 
     -- dap
     use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }

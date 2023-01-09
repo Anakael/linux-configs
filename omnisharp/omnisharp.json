@@ -9,6 +9,7 @@
     },
     "RoslynExtensionsOptions": {
         "enableImportCompletion": true,
-        "enableAnalyzersSupport": true
+        "enableAnalyzersSupport": true,
+        "enableDecompilationSupport": true
     }
 }

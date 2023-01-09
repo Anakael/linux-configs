@@ -84,10 +84,12 @@ require('mason-lspconfig').setup_handlers({
                 local mapping_opts = { noremap = true, silent = true }
                 buf_set_keymap('n', '<space>t', ':OmniSharpTypeLookup<CR>', mapping_opts)
                 -- buf_set_keymap('n', 'gd', ':OmniSharpGotoDefinition<CR>', mapping_opts)
-                -- buf_set_keymap('n', '<space>d', ':OmniSharpDocumentation<CR>', mapping_opts)
                 buf_set_keymap('n', 'fu', ':OmniSharpFixUsings<CR>', mapping_opts)
                 buf_set_keymap('n', '<space>s', ':OmniSharpSignatureHelp<CR>', mapping_opts)
-            end
+            end,
+            handlers = {
+                ['textDocument/definition'] = require('omnisharp_extended').handler
+            }
         })
     end
 })
