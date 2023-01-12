@@ -36,6 +36,7 @@ return require('packer').startup(function()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-nvim-lua'
     use 'onsails/lspkind-nvim'
 
     -- snipets
@@ -72,4 +73,5 @@ return require('packer').startup(function()
     use 'windwp/nvim-ts-autotag'
     -- file manager
     use { "nvim-telescope/telescope-file-browser.nvim" }
+    use 'nvim-lua/plenary.nvim'
 end)

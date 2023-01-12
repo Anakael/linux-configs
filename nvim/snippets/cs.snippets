@@ -24,3 +24,15 @@ snippet mt+
 
 snippet ct CancellationToken
 	CancellationToken cancellationToken = default
+
+snippet <p
+	<param name="${1}"></param>
+
+snippet ctor
+	/// <summary>
+	/// ctor.
+	/// </summary>
+	public ${1:`vim_snippets#Filename()`}(${2})
+	{
+		${0}
+	}
