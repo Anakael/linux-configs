@@ -10,14 +10,6 @@ local t = ls.text_node
 local sn = ls.snippet_node
 local rep = require("luasnip.extras").rep
 
-local log = function(message)
-    local log_file_path = './comp.log'
-    local log_file = io.open(log_file_path, "a")
-    io.output(log_file)
-    io.write(message .. "\n")
-    io.close(log_file)
-end
-
 -- Get a list of  the property names given an `type_alias_declaration`
 -- treesitter *tsx* node.
 -- Ie, if the treesitter node represents:
