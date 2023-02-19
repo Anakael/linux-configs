@@ -5,38 +5,45 @@ return require('packer').startup(function()
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
-    use 'arkav/lualine-lsp-progress'
     use 'ray-x/lsp_signature.nvim'
-    use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
     -- use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- wait for diagnostics in o#
+    -- lsp progress
     use 'j-hui/fidget.nvim'
     use { 'glepnir/lspsaga.nvim', branch = 'main' }
     use 'Hoffs/omnisharp-extended-lsp.nvim'
+    use "folke/neodev.nvim"
 
     -- dap
-    use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
+    use 'mfussenegger/nvim-dap'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'rcarriga/nvim-dap-ui'
     use 'nvim-telescope/telescope-dap.nvim'
 
-    -- run
+    -- tests
     use 'vim-test/vim-test'
-    use 'tpope/vim-dispatch'
 
-    -- language
+    -- languages
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'OmniSharp/omnisharp-vim'
     use { 'simrat39/rust-tools.nvim', requires = { 'nvim-lua/popup.nvim' } }
+    -- markdown / tex / plantuml
+    use { 'plasticboy/vim-markdown', requires = { 'godlygeek/tabular' } }
+    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+    use 'lervag/vimtex'
+    use 'aklt/plantuml-syntax'
+    -- misc
+    use 'numToStr/Comment.nvim'
 
-    use 'cespare/vim-toml'
-
-    -- code actions
-    use 'RishabhRD/popfix'
-    -- use 'RishabhRD/nvim-lsputils'
+    -- telescope
+    use 'nvim-telescope/telescope.nvim'
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { "nvim-telescope/telescope-file-browser.nvim" }
 
     -- cmp
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
     use 'onsails/lspkind-nvim'
 
     -- snipets
@@ -46,32 +53,29 @@ return require('packer').startup(function()
 
     -- git
     use 'tpope/vim-fugitive'
-    use 'kdheepak/lazygit.nvim'
     use 'lewis6991/gitsigns.nvim'
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use 'sindrets/diffview.nvim'
 
     -- misc
-    use 'kyazdani42/nvim-web-devicons'
-    use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-    use 'majutsushi/tagbar'
-    use 'tpope/vim-surround'
-    use { 'plasticboy/vim-markdown', requires = { 'godlygeek/tabular' } }
-    use 'lervag/vimtex'
-    use 'itchyny/vim-cursorword'
-    use 'numToStr/Comment.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use 'aklt/plantuml-syntax'
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
-    use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
-    -- use 'folke/lsp-colors.nvim'
-    use { 'alvarosevilla95/luatab.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-    use 'cohama/lexima.vim'
-    use 'EdenEast/nightfox.nvim'
-    use 'gpanders/editorconfig.nvim'
-    use 'windwp/nvim-ts-autotag'
-    -- file manager
-    use { "nvim-telescope/telescope-file-browser.nvim" }
+    -- core
     use 'nvim-lua/plenary.nvim'
+    use 'kyazdani42/nvim-web-devicons'
+
+    -- theme
+    use 'EdenEast/nightfox.nvim'
+    use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+    use 'alvarosevilla95/luatab.nvim'
+    use({
+        "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", }
+    })
+
+    -- auto
+    use 'windwp/nvim-autopairs'
+    use 'windwp/nvim-ts-autotag'
+    use 'tpope/vim-surround'
+    -- use 'cohama/lexima.vim' // is it used?
+
+    -- other
+    use 'itchyny/vim-cursorword'
+    use 'gpanders/editorconfig.nvim' -- // to delete
 end)

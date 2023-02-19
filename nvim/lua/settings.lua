@@ -24,7 +24,8 @@ opt.cursorline = false
 opt.number = true
 opt.clipboard = 'unnamedplus'
 opt.spell = false
-opt.langmap = 'ЙЦУКЕНГШЩФЫВАПРОЛДЖЯЧСМИТЬ;QWFPGJLUYARSTDHNEIOZXCVBKM,йцукенгшщфывапролджячсмить;qwfpgjluyarstdhneiozxcvbkm'
+opt.langmap =
+'ЙЦУКЕНГШЩФЫВАПРОЛДЖЯЧСМИТЬ;QWFPGJLUYARSTDHNEIOZXCVBKM,йцукенгшщфывапролджячсмить;qwfpgjluyarstdhneiozxcvbkm'
 opt.updatetime = 300
 
 opt.termguicolors = true
@@ -39,11 +40,8 @@ cmd [[
     syntax enable
 ]]
 
--- g.airline_theme='onedark'
 g.instant_markdown_mathjax = 1
 g.vim_markdown_math = 1
-g.tagbar_position = 'left'
-g.tagbar_compact = 1
 
 -- latex
 g.Tex_GotoError = 0
@@ -59,7 +57,7 @@ g.OmniSharp_highlighting = 0
 g.OmniSharp_server_path = '/home/dmitry/.local/share/nvim/mason/bin/omnisharp'
 
 -- Lualine
-require('lualine').setup {
+require('lualine').setup({
     options = {
         theme = 'codedark'
     },
@@ -68,25 +66,39 @@ require('lualine').setup {
         lualine_x = {},
         lualine_y = {},
     }
-}
+})
 
 -- Treesitter
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'python', 'c_sharp', 'rust', 'lua', 'cpp', 'tsx', 'scss', 'html' },
+require('nvim-treesitter.configs').setup({
+    ensure_installed = {
+        'python',
+        'c_sharp',
+        'rust',
+        'lua',
+        'cpp',
+        'tsx',
+        'scss',
+        'html',
+        'vim',
+        'regex',
+        'bash',
+        'markdown',
+        'markdown_inline'
+    },
     highlight = {
         enable = true,
     },
     autotag = {
         enable = true,
     }
-}
+})
 
 -- Comment
-require('Comment').setup {
+require('Comment').setup({
     opleader = {
         lines = 'cc'
     }
-}
+})
 
 -- Luatab
 require('luatab').setup {
@@ -120,7 +132,7 @@ require('dapui').setup {
     layouts = {
         {
             elements = {
-                { id = "scopes", size = 0.4 },
+                { id = "scopes",  size = 0.4 },
                 { id = "watches", size = 0.6 }
             },
             size = 50,
@@ -143,6 +155,7 @@ require('telescope').setup()
 g.netrw_banner = 0
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('dap')
+require("telescope").load_extension("noice")
 
 -- Tests
 g['test#csharp#runner'] = 'dotnettest'
@@ -167,8 +180,6 @@ require('diffview').setup {
         }
     }
 }
--- lazygit
-g.lazygit_floating_window_scaling_factor = 1
 
 -- Copen
 
@@ -192,13 +203,65 @@ require('nightfox').setup({
 
 cmd 'colorscheme nightfox'
 
--- Fidget
-require('fidget').setup {}
+-- Fidget (lsp progress)
+require('fidget').setup({})
 
 -- Lsp saga
-require('lspsaga').init_lsp_saga({
-    code_action_lightbulb = {
+require('lspsaga').setup({
+    lightbulb = {
         enable = false
+    },
+    outline = {
+        auto_preview = false
     }
 })
 
+-- Noice
+require("noice").setup({
+    lsp = {
+        override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+        },
+        signature = {
+            enabled = false
+        }
+    },
+    presets = {
+        long_message_to_split = true,
+        lsp_doc_border = false,
+    },
+    routes = {
+        {
+            filter = {
+                event = "msg_show",
+                kind = "",
+                find = "written",
+            },
+            opts = { skip = true },
+        },
+        {
+            filter = {
+                event = "msg_show",
+                kind = "",
+                find = "before #",
+            },
+            opts = { skip = true },
+        },
+    },
+    views = {
+        cmdline_popup = {
+            border = {
+                style = "none",
+                padding = { 1, 2 },
+            },
+            filter_options = {},
+            win_options = {
+                winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+            },
+        },
+    },
+})
+
+require("nvim-autopairs").setup({})

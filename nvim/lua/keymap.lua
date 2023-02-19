@@ -1,5 +1,5 @@
-local map = vim.api.nvim_set_keymap
-local default_opts = { noremap = true, silent = true }
+local map = vim.keymap.set
+local default_opts = { silent = true }
 
 vim.g.mapleader = ','
 
@@ -15,24 +15,22 @@ map('n', '<leader>q', ':q<CR>', default_opts)
 map('n', '<F1>', ':noh<CR>', default_opts)
 map('n', '<F2>', ':set spell!<CR>', default_opts)
 
+local vim_lsp = vim.lsp.buf
 -- lsp
-map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
-map('', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', default_opts)
+map('n', 'gd', vim_lsp.definition, default_opts)
+map('', '<space>f', vim_lsp.format, default_opts)
 map('', '<space>t', ':ClangdSwitchSourceHeader<CR>', default_opts)
 
+local telescope = require('telescope.builtin')
 -- telescope
-map('n', '<leader>f', '<cmd>lua require("telescope.builtin").find_files()<CR>', default_opts)
-map('n', '<leader>s', '<cmd>lua require("telescope.builtin").grep_string()<CR>', default_opts)
-map('n', '<leader><S-s>', '<cmd>lua require("telescope.builtin").live_grep()<CR>', default_opts)
-map('n', 'gu', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', default_opts)
-map('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>', default_opts)
+map('n', '<leader>f', telescope.find_files, default_opts)
+map('n', '<leader>s', telescope.grep_string, default_opts)
+map('n', '<leader><S-s>', telescope.live_grep, default_opts)
+map('n', 'gu', telescope.lsp_references, default_opts)
+map('n', 'gi', telescope.lsp_implementations, default_opts)
 
 -- git
-map('n', '<leader>g', ':LazyGit<CR>', default_opts)
 map('n', '<leader>d', ':DiffviewOpen<CR>', default_opts)
-
--- tagbar
-map('', '<F8>', ':TagbarToggle<CR>', default_opts)
 
 -- File manager
 map('', '<leader>n', ':Telescope file_browser path=%:p:h<CR>', default_opts)
@@ -52,21 +50,31 @@ map('n', 't3', '3gt', default_opts)
 map('n', 't4', '4gt', default_opts)
 map('n', 't5', '5gt', default_opts)
 
+local dap = require('dap')
+local dapui = require('dapui')
 -- Dap
-map('n', '<F29>', '<cmd>lua require("dap").terminate()<CR>', default_opts) -- C-F5
-map('n', '<F5>', '<cmd>lua require("dap").continue()<CR>', default_opts)
-map('n', '<F9>', '<cmd>lua require("dap").toggle_breakpoint()<CR>', default_opts)
-map('n', '<F10>', '<cmd>lua require("dap").step_over()<CR>', default_opts)
-map('n', '<F11>', '<cmd>lua require("dap").step_into()<CR>', default_opts)
-map('n', '<F12>', '<cmd>lua require("dap").step_out()<CR>', default_opts)
-map('n', '<F6>', '<cmd>lua require("dapui").toggle()<CR>', default_opts)
+map('n', '<F29>', dap.terminate, default_opts) -- C-F5
+map('n', '<F5>', dap.continue, default_opts)
+map('n', '<F9>', dap.toggle_breakpoint, default_opts)
+map('n', '<F10>', dap.step_over, default_opts)
+map('n', '<F11>', dap.step_into, default_opts)
+map('n', '<F12>', dap.step_out, default_opts)
+map('n', '<F6>', dapui.toggle, default_opts)
 
 -- Lspsaga
 map('n', '<space>a', '<cmd>Lspsaga code_action<CR>', default_opts)
 map('v', '<space>a', '<cmd>Lspsaga code_action<CR>', default_opts)
 map('n', '[g', '<cmd>Lspsaga diagnostic_jump_prev<CR>', default_opts)
 map('n', ']g', '<cmd>Lspsaga diagnostic_jump_next<CR>', default_opts)
+local lspsaga_diagnostic = require('lspsaga.diagnostic')
+local severity_opts = { severity = vim.diagnostic.severity.ERROR }
+map('n', '[r', function()
+    lspsaga_diagnostic:goto_prev(severity_opts)
+end, default_opts)
+map('n', ']r', function()
+    lspsaga_diagnostic:goto_next(severity_opts)
+end, default_opts)
 map('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', default_opts)
-map('n', '<A-t>', '<cmd>Lspsaga open_floaterm fish<CR>', default_opts)
-map('t', '<A-t>', [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], default_opts)
+map({ 'n', 't' }, '<A-t>', '<cmd>Lspsaga term_toggle fish<CR>', default_opts)
 map('n', '<space>d', '<cmd>Lspsaga hover_doc<CR>', default_opts)
+map('n', '<F8>', '<cmd>Lspsaga outline<CR>', default_opts)

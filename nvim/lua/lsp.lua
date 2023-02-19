@@ -4,7 +4,7 @@ require('mason-lspconfig').setup({
         'cssls',
         'html',
         'jsonls',
-        'sumneko_lua',
+        'lua_ls',
         'omnisharp',
         'rust_analyzer',
         'dockerls',
@@ -20,8 +20,16 @@ require('mason-lspconfig').setup_handlers({
     function(server_name)
         require("lspconfig")[server_name].setup({})
     end,
-    ['sumneko_lua'] = function()
-        lsp_config.sumneko_lua.setup({
+    ['cssls'] = function()
+
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        lsp_config.cssls.setup({
+            capabilities = capabilities
+        })
+    end,
+    ['lua_ls'] = function()
+        lsp_config.lua_ls.setup({
             settings = {
                 Lua = {
                     diagnostics = {
@@ -29,6 +37,7 @@ require('mason-lspconfig').setup_handlers({
                     },
                     workspace = {
                         library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
                     },
                     telemetry = {
                         enable = false,
@@ -94,7 +103,6 @@ require('mason-lspconfig').setup_handlers({
     end
 })
 
--- vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.codeAction').code_action_handler
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
     -- Disable signs
