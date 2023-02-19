@@ -16,9 +16,7 @@ require('mason-lspconfig').setup({
 
 local lsp_config = require('lspconfig')
 
-require('neodev').setup({
-    library = { plugins = { 'neotest' }, types = true },
-})
+require('neodev').setup({})
 
 require('mason-lspconfig').setup_handlers({
     function(server_name)
