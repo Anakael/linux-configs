@@ -20,7 +20,7 @@ return require('packer').startup(function()
     use 'nvim-telescope/telescope-dap.nvim'
 
     -- tests
-    use 'vim-test/vim-test'
+    use { 'nvim-neotest/neotest', requires = { 'Issafalcon/neotest-dotnet' } }
 
     -- languages
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -78,4 +78,5 @@ return require('packer').startup(function()
     -- other
     use 'itchyny/vim-cursorword'
     use 'gpanders/editorconfig.nvim' -- // to delete
+    use 'kevinhwang91/nvim-bqf'
 end)

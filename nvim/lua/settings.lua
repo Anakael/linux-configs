@@ -183,7 +183,7 @@ require('diffview').setup {
 
 -- Copen
 
-local qf_size = "50"
+local qf_size = "30"
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",
     callback = function()
@@ -265,3 +265,6 @@ require("noice").setup({
 })
 
 require("nvim-autopairs").setup({})
+
+-- quickfix
+require('bqf').setup({})

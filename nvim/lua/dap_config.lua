@@ -2,7 +2,7 @@ local dap = require('dap')
 
 dap.adapters.cs = {
   type = 'executable',
-  command = '/usr/bin/netcoredbg',
+  command = '/home/dmitry/.local/share/nvim/mason/bin/netcoredbg',
   args = {'--interpreter=vscode'}
 }
 

@@ -16,12 +16,15 @@ require('mason-lspconfig').setup({
 
 local lsp_config = require('lspconfig')
 
+require('neodev').setup({
+    library = { plugins = { 'neotest' }, types = true },
+})
+
 require('mason-lspconfig').setup_handlers({
     function(server_name)
         require("lspconfig")[server_name].setup({})
     end,
     ['cssls'] = function()
-
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
         lsp_config.cssls.setup({
@@ -34,10 +37,6 @@ require('mason-lspconfig').setup_handlers({
                 Lua = {
                     diagnostics = {
                         globals = { 'vim', 'use' },
-                    },
-                    workspace = {
-                        library = vim.api.nvim_get_runtime_file("", true),
-                        checkThirdParty = false,
                     },
                     telemetry = {
                         enable = false,
