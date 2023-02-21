@@ -1,0 +1,17 @@
+snippet retM return M
+	local M = {}
+
+	${0}
+
+	return M
+
+snippet setupM return M
+	local setup = function()
+		${0}
+	end
+
+	local M = {
+		setup = setup
+	}
+
+	return M
