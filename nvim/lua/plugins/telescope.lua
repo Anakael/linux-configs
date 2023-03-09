@@ -5,6 +5,7 @@ local setup = function()
     require('telescope').load_extension('file_browser')
     require('telescope').load_extension('dap')
     require("telescope").load_extension("noice")
+    require("telescope").load_extension("fzf")
 
     local map = vim.keymap.set
     local telescope = require('telescope.builtin')

@@ -4,6 +4,7 @@ local setup = function()
             enable = false
         },
         outline = {
+            win_position = 'left',
             auto_preview = false
         },
         diagnostic = {

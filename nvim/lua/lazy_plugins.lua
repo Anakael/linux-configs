@@ -67,10 +67,13 @@ require('lazy').setup({
         {
             'nvim-telescope/telescope.nvim',
             dependencies = {
-                'nvim-telescope/telescope-fzf-native.nvim',
                 'nvim-telescope/telescope-file-browser.nvim'
             },
             config = plugins.telescope
+        },
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make'
         },
         {
             'numToStr/Comment.nvim',

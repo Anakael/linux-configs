@@ -22,7 +22,7 @@ local setup = function()
             { name = 'buffer' },
         },
         mapping = {
-            ['<C-Space>'] = cmp.mapping.complete({}),
+            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete({}), { 'i', 'c' }),
             ['<CR>'] = cmp.mapping.confirm(),
             ['<Tab>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
@@ -66,14 +66,6 @@ local setup = function()
         sources = {
             { name = 'buffer' }
         }
-    })
-    cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-            { name = 'path' }
-        }, {
-            { name = 'cmdline' }
-        })
     })
 end
 
