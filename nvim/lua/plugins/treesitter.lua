@@ -9,11 +9,12 @@ local setup = function()
             'tsx',
             'scss',
             'html',
+            'haskell',
             'vim',
             'regex',
             'bash',
             'markdown',
-            'markdown_inline'
+            'markdown_inline',
         },
         highlight = {
             enable = true,

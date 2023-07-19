@@ -11,7 +11,8 @@ local setup = function()
             'dockerls',
             'tsserver',
             'eslint',
-            'pyright'
+            'pyright',
+            'clangd',
         }
     })
 
@@ -81,21 +82,22 @@ local setup = function()
         end,
         ['omnisharp'] = function()
             lsp_config.omnisharp.setup({
+                -- cmd = {'dotnet' ,'/home/dmitry/Documents/Programming/omnisharp-roslyn/artifacts/publish/OmniSharp.Stdio.Driver/linux-x64/net6.0/OmniSharp.dll', '-v'},
                 handlers = {
                     ['textDocument/definition'] = require('omnisharp_extended').handler
-                }
+                },
             })
         end
     })
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- Disable signs
-        signs = false,
-    })
+            -- Disable signs
+            signs = false,
+        })
 
     require("lsp_signature").setup({
-        floating_window_above_cur_line = false
+        floating_window_above_cur_line = true
     })
     local map = vim.keymap.set
     local vim_lsp = vim.lsp.buf
@@ -104,6 +106,26 @@ local setup = function()
     map('', '<space>f', vim_lsp.format)
     map('', '<space>t', ':ClangdSwitchSourceHeader<CR>')
 end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local function toSnakeCase(str)
+      return string.gsub(str, "%s*[- ]%s*", "_")
+    end
+
+    if client.name == 'omnisharp' then
+      local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+      for i, v in ipairs(tokenModifiers) do
+        tokenModifiers[i] = toSnakeCase(v)
+      end
+      local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+      for i, v in ipairs(tokenTypes) do
+        tokenTypes[i] = toSnakeCase(v)
+      end
+    end
+  end,
+})
 
 
 local M = {

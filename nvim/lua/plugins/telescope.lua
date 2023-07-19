@@ -14,7 +14,6 @@ local setup = function()
     map('n', '<leader><S-s>', telescope.live_grep)
     map('n', 'gu', telescope.lsp_references)
     map('n', 'gi', telescope.lsp_implementations)
-    map('', '<leader>n', ':Telescope file_browser path=%:p:h<CR>')
 
     local telescope_fzf_path = vim.fn.stdpath('data') .. '/lazy/telescope-fzf-native.nvim'
     os.execute('cd ' .. telescope_fzf_path .. ' && make')

@@ -31,12 +31,9 @@ local function get_ns()
                     end
                     namespaces_cache[closest_csproj] = root_namespace
 
-                    if root_namespace ~= "" then
-                        root_namespace = root_namespace .. "."
-                    end
                     local file_path = vim.fn.fnamemodify(vim.fn.expand('%:r'), ':h')
                     local relative_path = file_path:gsub('.*' .. closest_csproj:gsub('%.', '%.'), '')
-                    local namespace = root_namespace .. (closest_csproj .. relative_path):gsub(path.path.sep, '%.')
+                    local namespace = root_namespace .. relative_path:gsub(path.path.sep, '%.')
                     return namespace
                 end
             end

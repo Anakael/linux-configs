@@ -9,8 +9,9 @@ local M = {
     lualine = require('plugins.lualine').setup,
     luatab = require('plugins.luatab').setup,
     noice = require('plugins.noice').setup,
-    diffview = require('plugins.diffview').setup,
     neotest = require('plugins.neotest').setup,
+    parinfer = require('plugins.parinfer').setup,
+    oil = require('plugins.oil').setup,
 }
 
 return M

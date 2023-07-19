@@ -14,151 +14,157 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = require('plugins')
 
 require('lazy').setup({
-    {
         {
-            'EdenEast/nightfox.nvim',
-            priority = 10000,
-            config = plugins.nightfox,
-        },
-        {
-            'folke/neodev.nvim',
-            config = true,
-            dependencies = {
-                'neovim/nvim-lspconfig'
+            {
+                'EdenEast/nightfox.nvim',
+                priority = 10000,
+                config = plugins.nightfox,
             },
-            priority = 1000
-        },
-        {
-            'simrat39/rust-tools.nvim',
-            dependencies = {
-                'nvim-lua/popup.nvim'
+            {
+                'folke/neodev.nvim',
+                config = true,
+                dependencies = {
+                    'neovim/nvim-lspconfig'
+                },
+                priority = 1000
             },
-        },
-        {
-            'williamboman/mason.nvim',
-            dependencies = {
-                'williamboman/mason-lspconfig.nvim',
-                'neovim/nvim-lspconfig',
-                'Hoffs/omnisharp-extended-lsp.nvim',
-                'ray-x/lsp_signature.nvim',
+            {
+                'simrat39/rust-tools.nvim',
+                dependencies = {
+                    'nvim-lua/popup.nvim'
+                },
             },
-            config = plugins.lsp
-        },
-        {
-            -- lsp progress
-            'j-hui/fidget.nvim',
-            config = true
-        },
-        {
-            'L3MON4D3/LuaSnip',
-            config = plugins.snippets
-        },
-        {
-            'hrsh7th/nvim-cmp',
-            dependencies = {
-                'hrsh7th/cmp-buffer',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-nvim-lsp',
-                'onsails/lspkind-nvim',
-                'saadparwaiz1/cmp_luasnip',
+            {
+                'williamboman/mason.nvim',
+                dependencies = {
+                    'williamboman/mason-lspconfig.nvim',
+                    'neovim/nvim-lspconfig',
+                    'Hoffs/omnisharp-extended-lsp.nvim',
+                    'ray-x/lsp_signature.nvim',
+                },
+                config = plugins.lsp
             },
-            config = plugins.cmp
-        },
-        {
-            'nvim-telescope/telescope.nvim',
-            dependencies = {
-                'nvim-telescope/telescope-file-browser.nvim'
+            {
+                -- lsp progress
+                'j-hui/fidget.nvim',
+                config = true
             },
-            config = plugins.telescope
-        },
-        {
-            'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'make'
-        },
-        {
-            'numToStr/Comment.nvim',
-            config = true
-        },
-        {
-            'nvim-treesitter/nvim-treesitter',
-            dependencies = {
-                'windwp/nvim-ts-autotag'
+            {
+                'L3MON4D3/LuaSnip',
+                config = plugins.snippets
             },
-            config = plugins.treesitter
-        },
-        {
-            'windwp/nvim-autopairs',
-            config = true
-        },
-        {
-            'kevinhwang91/nvim-bqf',
-            config = true
-        },
-        {
-            'glepnir/lspsaga.nvim',
-            config = plugins.lspsaga
-        },
-        {
-            'nvim-lualine/lualine.nvim',
-            config = plugins.lualine
-        },
-        {
-            'alvarosevilla95/luatab.nvim',
-            config = plugins.luatab
-        },
-        {
-            'folke/noice.nvim',
-            dependencies = {
-                'MunifTanjim/nui.nvim',
-                'rcarriga/nvim-notify'
+            {
+                'hrsh7th/nvim-cmp',
+                dependencies = {
+                    'hrsh7th/cmp-buffer',
+                    'hrsh7th/cmp-path',
+                    'hrsh7th/cmp-nvim-lsp',
+                    'onsails/lspkind-nvim',
+                    'saadparwaiz1/cmp_luasnip',
+                },
+                config = plugins.cmp
             },
-            config = plugins.noice
-        },
-        {
-            'kevinhwang91/nvim-bqf',
-            config = true
-        },
-        {
-            'plasticboy/vim-markdown',
-            dependencies = {
-                'godlygeek/tabular'
-            }
-        },
-        {
-            'lewis6991/gitsigns.nvim',
-            config = true
-        },
-        {
-            'sindrets/diffview.nvim',
-            config = plugins.diffview
-        },
-        {
-            'nvim-neotest/neotest',
-            dependencies = {
-                'Issafalcon/neotest-dotnet'
+            {
+                'nvim-telescope/telescope.nvim',
+                dependencies = {
+                    'nvim-telescope/telescope-file-browser.nvim'
+                },
+                config = plugins.telescope
             },
-            config = plugins.neotest
-        },
-        {
-            'mfussenegger/nvim-dap',
-            dependencies = {
-                'theHamsta/nvim-dap-virtual-text',
-                'rcarriga/nvim-dap-ui',
-                'nvim-telescope/telescope-dap.nvim'
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make'
             },
-            config = plugins.dap
+            {
+                'numToStr/Comment.nvim',
+                config = true
+            },
+            {
+                'nvim-treesitter/nvim-treesitter',
+                dependencies = {
+                    'windwp/nvim-ts-autotag'
+                },
+                config = plugins.treesitter
+            },
+            {
+                'windwp/nvim-autopairs',
+                config = true
+            },
+            {
+                'kevinhwang91/nvim-bqf',
+                config = true
+            },
+            {
+                'glepnir/lspsaga.nvim',
+                config = plugins.lspsaga
+            },
+            {
+                'nvim-lualine/lualine.nvim',
+                config = plugins.lualine
+            },
+            {
+                'alvarosevilla95/luatab.nvim',
+                config = plugins.luatab
+            },
+            {
+                'folke/noice.nvim',
+                dependencies = {
+                    'MunifTanjim/nui.nvim',
+                    'rcarriga/nvim-notify'
+                },
+                config = plugins.noice
+            },
+            {
+                'kevinhwang91/nvim-bqf',
+                config = true
+            },
+            {
+                'plasticboy/vim-markdown',
+                dependencies = {
+                    'godlygeek/tabular'
+                }
+            },
+            {
+                'lewis6991/gitsigns.nvim',
+                config = true
+            },
+            {
+                'nvim-neotest/neotest',
+                dependencies = {
+                    'Issafalcon/neotest-dotnet'
+                },
+                config = plugins.neotest
+            },
+            {
+                'mfussenegger/nvim-dap',
+                dependencies = {
+                    'theHamsta/nvim-dap-virtual-text',
+                    'rcarriga/nvim-dap-ui',
+                    'nvim-telescope/telescope-dap.nvim'
+                },
+                config = plugins.dap
+            },
+            {
+                'eraserhd/parinfer-rust',
+                config = plugins.parinfer
+
+            },
+            {
+                'stevearc/oil.nvim',
+                config = plugins.oil
+            },
+            'honza/vim-snippets',
+            'nvim-lua/plenary.nvim',
+            'kyazdani42/nvim-web-devicons',
+            'tpope/vim-surround',
+            'gpanders/editorconfig.nvim', -- // to delete after neovim 0.9
+            'itchyny/vim-cursorword',
+            'aklt/plantuml-syntax',
+            'tpope/vim-fugitive',
+            'elkowar/yuck.vim'
+            -- try trouble.nvim
         },
-        'honza/vim-snippets',
-        'nvim-lua/plenary.nvim',
-        'kyazdani42/nvim-web-devicons',
-        'tpope/vim-surround',
-        'gpanders/editorconfig.nvim', -- // to delete after neovim 0.9
-        'itchyny/vim-cursorword',
-        'aklt/plantuml-syntax',
-        'tpope/vim-fugitive'
-        -- try trouble.nvim
     },
-},
     {
         install = {
             colorscheme = { 'nightfox' }
