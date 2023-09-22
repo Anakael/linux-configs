@@ -43,7 +43,7 @@ local keys = {
     },
     {
         key = 'w',
-        mods = 'CTRL',
+        mods = 'CTRL|ALT',
         action = act.CloseCurrentTab({ confirm = true }),
     },
 }
