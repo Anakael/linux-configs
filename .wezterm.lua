@@ -60,4 +60,5 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
+
 return config
