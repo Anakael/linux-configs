@@ -29,6 +29,13 @@ local setup = function()
                 },
                 opts = { skip = true },
             },
+            {
+                filter = {
+                    event = "msg_show",
+                    find = "Couldn't find a trigger char",
+                },
+                opts = { skip = true },
+            },
         },
         views = {
             cmdline_popup = {

@@ -145,23 +145,22 @@ require('lazy').setup({
                 config = plugins.dap
             },
             {
-                'eraserhd/parinfer-rust',
-                config = plugins.parinfer
-
-            },
-            {
                 'stevearc/oil.nvim',
                 config = plugins.oil
+            },
+            {
+                'nvim-pack/nvim-spectre',
+                dependencies = {
+                    'nvim-lua/plenary.nvim',
+                }
             },
             'honza/vim-snippets',
             'nvim-lua/plenary.nvim',
             'kyazdani42/nvim-web-devicons',
             'tpope/vim-surround',
-            'gpanders/editorconfig.nvim', -- // to delete after neovim 0.9
             'itchyny/vim-cursorword',
             'aklt/plantuml-syntax',
             'tpope/vim-fugitive',
-            'elkowar/yuck.vim'
             -- try trouble.nvim
         },
     },

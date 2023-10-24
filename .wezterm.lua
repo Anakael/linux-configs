@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local mux = wezterm.mux
 
 -- This table will hold the configuration.
 local config = {}
@@ -22,10 +23,7 @@ config.color_scheme = 'MaterialDarker'
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.colors = {
-    tab_bar = {
-        inactive_tab_edge = '#575757',
-    },
-    background = '#1d1f21'
+    background = '#1d1f21',
 }
 config.window_padding = {
     left = 0,
@@ -43,7 +41,7 @@ local keys = {
     },
     {
         key = 'w',
-        mods = 'CTRL',
+        mods = 'CTRL|ALT',
         action = act.CloseCurrentTab({ confirm = true }),
     },
 }
@@ -56,5 +54,10 @@ for i = 1, 8 do
 end
 
 config.keys = keys
+
+wezterm.on('gui-startup', function(cmd)
+  local _, _, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
 
 return config

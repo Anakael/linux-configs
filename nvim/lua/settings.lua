@@ -5,6 +5,7 @@ local g = vim.g
 g.mapleader = ','
 
 opt.smartcase = true
+opt.ignorecase = true
 opt.autoread = true
 opt.swapfile = false
 opt.showcmd = true
@@ -45,29 +46,6 @@ g.instant_markdown_mathjax = 1
 g.vim_markdown_math = 1
 
 -- -- Dap
--- require('dapui').setup {
---     layouts = {
---         {
---             elements = {
---                 { id = "scopes",  size = 0.4 },
---                 { id = "watches", size = 0.6 }
---             },
---             size = 50,
---             position = "left"
---         },
---         {
---             elements = {
---                 "repl",
---             },
---             size = 10,
---             position = "bottom"
---         }
---     }
--- }
--- require('nvim-dap-virtual-text').setup({})
---
---
--- --git
 
 -- Copen
 local qf_size = "30"

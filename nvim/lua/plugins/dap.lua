@@ -1,5 +1,26 @@
 local setup = function()
     local dap = require('dap')
+    dap.setup({
+        layouts = {
+            {
+                elements = {
+                    { id = "scopes",  size = 0.4 },
+                    { id = "watches", size = 0.6 }
+                },
+                size = 50,
+                position = "left"
+            },
+            {
+                elements = {
+                    "repl",
+                },
+                size = 10,
+                position = "bottom"
+            }
+        }
+    })
+    require('nvim-dap-virtual-text').setup({})
+
 
     local netcoredbg_path = vim.fn.stdpath('data') .. '/mason/bin/netcoredbg'
     dap.adapters.cs = {

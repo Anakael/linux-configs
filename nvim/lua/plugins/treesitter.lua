@@ -9,7 +9,6 @@ local setup = function()
             'tsx',
             'scss',
             'html',
-            'haskell',
             'vim',
             'regex',
             'bash',
