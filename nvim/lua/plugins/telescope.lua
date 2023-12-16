@@ -1,7 +1,14 @@
 local setup = function()
     local g = vim.g
     g.netrw_banner = 0
-    require('telescope').setup({})
+    require('telescope').setup({
+        defaults = {
+            layout_strategy = "vertical",
+            layout_config = {
+                preview_height = 0.7
+            }
+        },
+    })
     require('telescope').load_extension('file_browser')
     require('telescope').load_extension('dap')
     require("telescope").load_extension("noice")
@@ -14,9 +21,6 @@ local setup = function()
     map('n', '<leader><S-s>', telescope.live_grep)
     map('n', 'gu', telescope.lsp_references)
     map('n', 'gi', telescope.lsp_implementations)
-
-    local telescope_fzf_path = vim.fn.stdpath('data') .. '/lazy/telescope-fzf-native.nvim'
-    os.execute('cd ' .. telescope_fzf_path .. ' && make')
 end
 
 local M = {

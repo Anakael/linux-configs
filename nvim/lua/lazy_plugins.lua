@@ -154,6 +154,10 @@ require('lazy').setup({
                     'nvim-lua/plenary.nvim',
                 }
             },
+            {
+                "folke/trouble.nvim",
+                config = plugins.trouble
+            },
             'honza/vim-snippets',
             'nvim-lua/plenary.nvim',
             'kyazdani42/nvim-web-devicons',
@@ -161,7 +165,6 @@ require('lazy').setup({
             'itchyny/vim-cursorword',
             'aklt/plantuml-syntax',
             'tpope/vim-fugitive',
-            -- try trouble.nvim
         },
     },
     {

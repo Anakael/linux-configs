@@ -11,6 +11,7 @@ local M = {
     noice = require('plugins.noice').setup,
     neotest = require('plugins.neotest').setup,
     oil = require('plugins.oil').setup,
+    trouble = require('plugins.trouble').setup,
 }
 
 return M
