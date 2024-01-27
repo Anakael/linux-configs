@@ -8,6 +8,17 @@ function string:endswith(ending)
     return ending == "" or self:sub(- #ending) == ending
 end
 
+function string:expand_vars(csproj_data)
+    local template = "$%((.+)%)"
+    local var_to_expand = self:match(template)
+    if var_to_expand == nil then
+        return self
+    end
+
+    local var_value = string.match(csproj_data, "<" .. var_to_expand .. ">(.+)</" .. var_to_expand .. ">")
+    return self:gsub(template, var_value)
+end
+
 local namespaces_cache = {}
 
 local function get_ns()
@@ -20,20 +31,23 @@ local function get_ns()
                 local closest_csproj = string.match(name, '(.*)%.csproj')
                 if closest_csproj ~= nil then
                     local root_namespace = ""
-                    if namespaces_cache[closest_csproj] ~= nil then
-                        root_namespace = namespaces_cache[closest_csproj]
+                    local root_namespace_mayble_cache = namespaces_cache[closest_csproj]
+                    if root_namespace_mayble_cache ~= nil then
+                        root_namespace = root_namespace_mayble_cache
                     else
                         local csproj_data = path.new(dir):joinpath(name):read()
                         local root_namespace_from_file = string.match(csproj_data, "<RootNamespace>(.+)</RootNamespace>")
                         if root_namespace_from_file ~= nil then
-                            root_namespace = root_namespace_from_file
+                            root_namespace = root_namespace_from_file:expand_vars(csproj_data)
                         end
                     end
                     namespaces_cache[closest_csproj] = root_namespace
 
                     local file_path = vim.fn.fnamemodify(vim.fn.expand('%:r'), ':h')
-                    local relative_path = file_path:gsub('.*' .. closest_csproj:gsub('%.', '%.'), '')
-                    local namespace = root_namespace .. relative_path:gsub(path.path.sep, '%.')
+                    if root_namespace ~= "" then
+                        file_path = file_path:gsub('.*' .. closest_csproj:gsub('%.', '%.'), '')
+                    end
+                    local namespace = root_namespace .. file_path:gsub(path.path.sep, '%.')
                     return namespace
                 end
             end
