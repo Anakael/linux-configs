@@ -8,14 +8,21 @@ function string:endswith(ending)
     return ending == "" or self:sub(- #ending) == ending
 end
 
-function string:expand_vars(csproj_data)
+function string:expand_vars(csproj_name, csproj_data)
     local template = "$%((.+)%)"
     local var_to_expand = self:match(template)
+
     if var_to_expand == nil then
         return self
     end
 
-    local var_value = string.match(csproj_data, "<" .. var_to_expand .. ">(.+)</" .. var_to_expand .. ">")
+    local var_value = ""
+    if var_to_expand == "MSBuildProjectName" then
+        var_value = csproj_name
+    else
+        var_value = string.match(csproj_data, "<" .. var_to_expand .. ">(.+)</" .. var_to_expand .. ">")
+    end
+
     return self:gsub(template, var_value)
 end
 
@@ -38,7 +45,7 @@ local function get_ns()
                         local csproj_data = path.new(dir):joinpath(name):read()
                         local root_namespace_from_file = string.match(csproj_data, "<RootNamespace>(.+)</RootNamespace>")
                         if root_namespace_from_file ~= nil then
-                            root_namespace = root_namespace_from_file:expand_vars(csproj_data)
+                            root_namespace = root_namespace_from_file:expand_vars(closest_csproj, csproj_data)
                         end
                     end
                     namespaces_cache[closest_csproj] = root_namespace
