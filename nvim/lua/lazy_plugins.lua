@@ -51,7 +51,10 @@ require('lazy').setup({
             },
             {
                 'L3MON4D3/LuaSnip',
-                config = plugins.snippets
+                config = plugins.snippets,
+                dependencies = { "rafamadriz/friendly-snippets" },
+                build = "make install_jsregexp"
+
             },
             {
                 'hrsh7th/nvim-cmp',
@@ -158,7 +161,7 @@ require('lazy').setup({
                 "folke/trouble.nvim",
                 config = plugins.trouble
             },
-            'honza/vim-snippets',
+            "rafamadriz/friendly-snippets",
             'nvim-lua/plenary.nvim',
             'kyazdani42/nvim-web-devicons',
             'tpope/vim-surround',

@@ -1,0 +1,26 @@
+{
+    "retM": {
+        "prefix": "retM",
+        "body": [
+            "local M = {}",
+            "",
+            "${0}",
+            "",
+            "return M"
+        ]
+    },
+    "setupM": {
+        "prefix": "setupM",
+        "body": [
+            "local setup = function()",
+            "    ${0}",
+            "end",
+            "",
+            "local M = {",
+            "    setup = setup",
+            "}",
+            "",
+            "return M"
+        ]
+    }
+}

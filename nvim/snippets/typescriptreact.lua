@@ -41,20 +41,18 @@ end
 
 return {
     s(
-        { trig = 'uses', dscr = 'Use state' },
-        fmt('const [{}, set{setter}] = useState({});', {
-            i(1, 'value'),
-            i(2, ''),
-            setter = l(l._1:sub(1, 1):upper() .. l._1:sub(2, -1), 1)
-        })
-    ),
-    s(
         { trig = 'compp', dscr = 'Component with parameters' },
         fmt([[
+"/* Props. */",
 type {}Props = {{
     {}
 }}
 
+/**
+ * {}.
+ * @param {{}}Props - Props.
+ * @returns Comp.
+ */
 export const {} = ({{{}}}: {}Props): JSX.Element => {{
     {}
 
@@ -65,10 +63,12 @@ export const {} = ({{{}}}: {}Props): JSX.Element => {{
 ]]       , {
             d(1, function(_, snip)
                 return sn(nil, {
-                    t(vim.fn.substitute(snip.env.TM_FILENAME, "\\..*$", "", "g")),
+                    t(snip.env.TM_FILENAME_BASE),
                 })
             end, {}),
             i(2, '// props'),
+            i(3),
+            rep(1),
             rep(1),
             f(function(_, snip, _)
                 local pos_begin = snip.nodes[2].mark:pos_begin()
@@ -92,7 +92,7 @@ export const {} = ({{{}}}: {}Props): JSX.Element => {{
                 return vim.fn.join(prop_names, ", ")
             end, { 2 }),
             rep(1),
-            i(3, ''),
+            i(5, ''),
             i(0, '<div>LOL</div>'),
         }
         )

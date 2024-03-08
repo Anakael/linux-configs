@@ -1,0 +1,48 @@
+{
+    "interface": {
+        "prefix": "interface",
+        "body": [
+            "/* ${1}. */",
+            "export interface ${TM_FILENAME_BASE} {",
+            "    ${0}",
+            "};"
+        ]
+    },
+    "enum": {
+        "prefix": "enum",
+        "body": [
+            "/* ${1}. */",
+            "export enum ${TM_FILENAME_BASE} {",
+            "    ${0}",
+            "};"
+        ]
+    },
+    "hook": {
+        "prefix": "hook",
+        "body": [
+            "/* ${2}. */",
+            "type ${TM_FILENAME_BASE}${1:Type} = {",
+            "    ${3}",
+            "};",
+            "",
+            "/* ${4} */",
+            "export const ${TM_FILENAME_BASE} = (): ${TM_FILENAME_BASE}${1} => {",
+            "    ${0}",
+            "    return {",
+            "    };",
+            "};"
+        ]
+    },
+    "export const": {
+        "prefix": "ec",
+        "body": [
+            "export const "
+        ]
+    },
+    "console log": {
+        "prefix": "cl",
+        "body": [
+            "console.log(${0});"
+        ]
+    }
+}

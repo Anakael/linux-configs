@@ -1,0 +1,95 @@
+{
+    "cw": {
+        "prefix": "cw",
+        "body": [
+            "Console.WriteLine(${0});"
+        ]
+    },
+    "ct": {
+        "prefix": "ct",
+        "body": [
+            "CancellationToken cancellationToken"
+        ]
+    },
+    "cte": {
+        "prefix": "cte",
+        "body": [
+            "CancellationToken cancellationToken = default"
+        ]
+    },
+    "pr": {
+        "prefix": "pr",
+        "body": [
+            "private readonly"
+        ]
+    },
+    "class": {
+        "prefix": "class",
+        "body": [
+            "public class ${TM_FILENAME_BASE}",
+            "{",
+            "    ${0}",
+            "}"
+        ]
+    },
+    "interface": {
+        "prefix": "interface",
+        "body": [
+            "public interface ${TM_FILENAME_BASE}",
+            "{",
+            "    ${0}",
+            "}"
+        ]
+    },
+    "record": {
+        "prefix": "record",
+        "body": [
+            "public record ${TM_FILENAME_BASE} (",
+            "    ${0});"
+        ]
+    },
+    "enum": {
+        "prefix": "enum",
+        "body": [
+            "public enum ${TM_FILENAME_BASE}",
+            "{",
+            "    ${0}",
+            "}"
+        ]
+    },
+    "ctor": {
+        "prefix": "ctor",
+        "body": [
+            "public ${TM_FILENAME_BASE}(${1})",
+            "{",
+            "    ${0}",
+            "}"
+        ]
+    },
+    "doc": {
+        "prefix": "///",
+        "body": [
+            "// <summary>",
+            "// ${0}.",
+            "// </summary>"
+        ]
+    },
+    "param": {
+        "prefix": "<p",
+        "body": [
+            "<param name=\"${1}\">${0}.</param>"
+        ]
+    },
+    "returns": {
+        "prefix": "<r",
+        "body": [
+            "<returns>${0}.</returns>"
+        ]
+    },
+    "see": {
+        "prefix": "<see",
+        "body": [
+            "<see cref=\"${1}\">${0}.</see>"
+        ]
+    }
+}
