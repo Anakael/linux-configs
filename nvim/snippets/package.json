@@ -39,6 +39,12 @@
                     "typescriptreact"
                 ],
                 "path": "./tsdoc.json"
+            },
+            {
+                "language": [
+                    "rust"
+                ],
+                "path": "./rust.json"
             }
         ]
     }
