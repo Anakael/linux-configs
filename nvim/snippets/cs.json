@@ -89,7 +89,7 @@
     "see": {
         "prefix": "<see",
         "body": [
-            "<see cref=\"${1}\">${0}.</see>"
+            "<see cref=\"${0}\"> />"
         ]
     }
 }
