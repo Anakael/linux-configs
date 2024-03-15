@@ -8,6 +8,7 @@ local f = ls.function_node
 local d = ls.dynamic_node
 local t = ls.text_node
 local sn = ls.snippet_node
+local c = ls.choice_node
 local rep = require("luasnip.extras").rep
 
 -- Get a list of  the property names given an `type_alias_declaration`
@@ -20,7 +21,7 @@ local rep = require("luasnip.extras").rep
 -- Then this function would return `{"prop1", "prop2"}
 ---@param id_node {} Stands for "type_alias_declaration node"
 ---@return string[]
-local function get_prop_names(id_node)
+local get_prop_names = function(id_node)
     local object_type_node = id_node:child(3)
     if object_type_node:type() ~= "object_type" then
         return {}
@@ -31,7 +32,7 @@ local function get_prop_names(id_node)
     for prop_signature in object_type_node:iter_children() do
         if prop_signature:type() == "property_signature" then
             local prop_iden = prop_signature:child(0)
-            local prop_name = vim.treesitter.query.get_node_text(prop_iden, 0)
+            local prop_name = vim.treesitter.get_node_text(prop_iden, 0)
             prop_names[#prop_names + 1] = prop_name
         end
     end
@@ -39,33 +40,63 @@ local function get_prop_names(id_node)
     return prop_names
 end
 
+local filename_node = function(_, snip)
+    return sn(nil, {
+        t(snip.env.TM_FILENAME_BASE),
+    })
+end
+
+
 return {
-    s(
-        { trig = 'compp', dscr = 'Component with parameters' },
+    s({ trig = 'comp', dscr = 'Component' },
         fmt([[
-"/* Props. */",
+/** {}.
+ * @returns Comp.
+ */
+export const {} = (): JSX.Element =>{}
+]], {
+            i(1),
+            d(2, filename_node, {}),
+            c(3, {
+                sn(nil, fmt([[
+
+
+                {};
+                ]], { i(1, '    <>LOL</>') })),
+                sn(nil, fmt([[ {{
+    {}
+
+    return (
+        <>{}</>
+    );
+}};
+                ]], {
+                    i(1),
+                    i(2, 'LOL')
+                })),
+            }),
+        })),
+    s({ trig = 'compp', dscr = 'Component with parameters' },
+        fmt([[
+/* Props. */
 type {}Props = {{
     {}
-}}
+}};
 
 /**
  * {}.
- * @param {{}}Props - Props.
+ * @param {{{}Props}} props - Props.
  * @returns Comp.
  */
-export const {} = ({{{}}}: {}Props): JSX.Element => {{
+export const {} = ({{ {} }}: {}Props): JSX.Element => {{
     {}
 
     return (
         {}
     );
 }};
-]]       , {
-            d(1, function(_, snip)
-                return sn(nil, {
-                    t(snip.env.TM_FILENAME_BASE),
-                })
-            end, {}),
+]], {
+            d(1, filename_node, {}),
             i(2, '// props'),
             i(3),
             rep(1),
@@ -73,7 +104,7 @@ export const {} = ({{{}}}: {}Props): JSX.Element => {{
             f(function(_, snip, _)
                 local pos_begin = snip.nodes[2].mark:pos_begin()
                 local pos_end = snip.nodes[2].mark:pos_end()
-                local parser = vim.treesitter.get_parser(0, "tsx")
+                local parser = vim.treesitter.get_parser(nil, "tsx")
                 local tstree = parser:parse()
                 local node = tstree[1]
                     :root()
@@ -92,9 +123,8 @@ export const {} = ({{{}}}: {}Props): JSX.Element => {{
                 return vim.fn.join(prop_names, ", ")
             end, { 2 }),
             rep(1),
-            i(5, ''),
-            i(0, '<div>LOL</div>'),
+            i(4, ''),
+            i(0, '<>LOL</>'),
         }
-        )
-    ),
+        )),
 }

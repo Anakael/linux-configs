@@ -21,13 +21,16 @@
         "prefix": "hook",
         "body": [
             "/* ${2}. */",
-            "type ${TM_FILENAME_BASE}${1:Type} = {",
+            "type ${TM_FILENAME_BASE:/capitalize}${1:Service} = {",
             "    ${3}",
             "};",
             "",
-            "/* ${4} */",
+            "/** ${4}.",
+            " * @returns Service.",
+            " */",
             "export const ${TM_FILENAME_BASE} = (): ${TM_FILENAME_BASE}${1} => {",
             "    ${0}",
+            "",
             "    return {",
             "    };",
             "};"

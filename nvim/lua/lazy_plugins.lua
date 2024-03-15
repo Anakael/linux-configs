@@ -85,7 +85,8 @@ require('lazy').setup({
             {
                 'nvim-treesitter/nvim-treesitter',
                 dependencies = {
-                    'windwp/nvim-ts-autotag'
+                    'windwp/nvim-ts-autotag',
+                    'nvim-treesitter/playground'
                 },
                 config = plugins.treesitter
             },

@@ -8,36 +8,9 @@
             "};"
         ]
     },
-    "comps": {
-        "prefix": "comps",
-        "body": [
-            " * ${1}.",
-            " * @returns Comp.",
-            " */",
-            "export const ${TM_FILENAME_BASE} = (): JSX.Element =>",
-            "    ${0:Lol};",
-            "};"
-        ]
-    },
-    "comp": {
-        "prefix": "comp",
-        "body": [
-            "/**",
-            " * ${1}.",
-            " * @returns Comp.",
-            " */",
-            "export const ${TM_FILENAME_BASE} = (): JSX.Element => {",
-            "    ${2}",
-            "",
-            "    return (",
-            "        ${0}",
-            "    );",
-            "};"
-        ]
-    },
     "useState": {
         "prefix": "us",
-        "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initValue});",
+        "body": "const [${1:state}, set${1:/capitalize}/}] = useState(${2:initValue});",
         "description": "React useState() hook"
     },
     "useEffect": {
@@ -86,5 +59,12 @@
             ");"
         ],
         "description": "React useCallback() hook"
+    },
+    "isc": {
+        "prefix": "isc",
+        "body": [
+            "import ${TM_FILENAME_BASE}.scss"
+        ]
+
     }
 }
