@@ -63,7 +63,7 @@
     "isc": {
         "prefix": "isc",
         "body": [
-            "import ${TM_FILENAME_BASE}.scss"
+            "import './${TM_FILENAME_BASE}.scss'"
         ]
 
     }
