@@ -12,6 +12,7 @@ local M = {
     neotest = require('plugins.neotest').setup,
     oil = require('plugins.oil').setup,
     trouble = require('plugins.trouble').setup,
+    conform = require('plugins.conform').setup,
 }
 
 return M

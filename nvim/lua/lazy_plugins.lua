@@ -162,6 +162,10 @@ require('lazy').setup({
                 "folke/trouble.nvim",
                 config = plugins.trouble
             },
+            {
+                "stevearc/conform.nvim",
+                config = plugins.conform
+            },
             "rafamadriz/friendly-snippets",
             'nvim-lua/plenary.nvim',
             'kyazdani42/nvim-web-devicons',

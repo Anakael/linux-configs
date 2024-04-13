@@ -87,6 +87,28 @@ local setup = function()
                 },
             })
         end,
+        ['tsserver'] = function()
+            local function organize_imports()
+                local params = {
+                    command = "_typescript.organizeImports",
+                    arguments = { vim.api.nvim_buf_get_name(0) }
+                }
+                vim.lsp.buf.execute_command(params)
+            end
+            lsp_config.tsserver.setup({
+                on_attach = function(_, _)
+                    local default_opts = { noremap = false, silent = true }
+                    local map = vim.keymap.set
+                    map("", "<space>f", ":OrganizeImports<cr>", default_opts)
+                end,
+                commands = {
+                    OrganizeImports = {
+                        organize_imports,
+                        description = "Organize Imports",
+                    }
+                }
+            })
+        end,
     })
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -102,7 +124,7 @@ local setup = function()
     local vim_lsp = vim.lsp.buf
     -- lsp
     map('n', 'gd', vim_lsp.definition)
-    map('', '<space>f', vim_lsp.format)
+    -- map('', '<space>f', vim_lsp.format)
     map('', '<space>t', ':ClangdSwitchSourceHeader<CR>')
 end
 

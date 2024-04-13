@@ -58,11 +58,10 @@ export const {} = (): JSX.Element =>{}
             i(1),
             d(2, filename_node, {}),
             c(3, {
-                sn(nil, fmt([[
-
-
-                {};
-                ]], { i(1, '    <>LOL</>') })),
+                sn(nil, fmt([[ (
+    {}
+);
+                ]], { i(1, '<>LOL</>') })),
                 sn(nil, fmt([[ {{
     {}
 
