@@ -99,7 +99,7 @@ local setup = function()
                 on_attach = function(_, _)
                     local default_opts = { noremap = false, silent = true }
                     local map = vim.keymap.set
-                    map("", "<space>f", ":OrganizeImports<cr>", default_opts)
+                    map("", "<space>f", ":Format<cr>:OrganizeImports<cr>", default_opts)
                 end,
                 commands = {
                     OrganizeImports = {
