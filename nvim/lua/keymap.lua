@@ -33,7 +33,3 @@ map("n", "t5", "5gt", default_options)
 map("", "<leader>g", ":LazyGit<cr>", default_options)
 map("", "<leader>d", ":DiffviewOpen<CR>", default_options)
 
--- flash
-map({ "n", "x", "o" }, "s", function()
-	require("flash").jump()
-end, default_options)
