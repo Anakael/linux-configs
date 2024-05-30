@@ -188,7 +188,7 @@ local setup = function()
 	-- lsp
 	map("n", "gd", vim_lsp.definition)
 	-- map('', '<space>f', vim_lsp.format)
-	map("", "<space>t", ":ClangdSwitchSourceHeader<CR>")
+	map("", "<space>p", ":ClangdSwitchSourceHeader<CR>")
 end
 
 local M = {
