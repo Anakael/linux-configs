@@ -1,22 +1,18 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 17px;
-    min-height: 27px;
+    font-family: Noto Sans, Roboto, Helvetica, Arial, sans-serif, FontAwesome6Free;
+    font-size: 20px;
 }
 
 window#waybar {
-    background: #2f343f;
+    background: transparent;
     border-top: 2px solid rgba(100, 114, 125, 0.7);
     color: #ffffff;
     transition-property: background, background-color;
     transition-duration: .5s;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
 
 window#waybar.empty {
     background: transparent;
@@ -26,48 +22,73 @@ window#waybar.solo {
     background: #FFFFFF;
 }
 
-#workspaces button {
-    padding: 0 5px;
-    color: #ffffff;
-    border-top: 2px solid transparent;
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
 }
 
-#workspaces button:hover {
+button:hover {
     background: rgba(0, 0, 0, 0.2);
-    border-top: 2px solid #ffffff;
+    border-top: 2px solid #c9545d;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
-#workspaces button.focused {
+button.focused {
     background: rgba(0, 0, 0, 0.3);
-    border-top: 2px solid #ffffff;
+    border-top: 2px solid #c9545d;
+    color: #c9545d;
+}
+
+button.active {
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 2px solid #c9545d;
+    color: #c9545d;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left>widget:first-child>#workspaces {
+    margin-left: 0;
+}
+
+#taskbar button {
+    min-height: 20px;
 }
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
 
-#taskbar button {
-    padding: 0 5px;
-    color: #ffffff;
-    border-top: 2px solid transparent;
-}
-#taskbar button:hover {
-    background: rgba(0, 0, 0, 0.2);
-    border-top: 2px solid #ffffff;
-}
-
-#taskbar button.active {
-    background: rgba(0, 0, 0, 0.3);
-    border-top: 2px solid #ffffff;
-}
-
 #clock,
-#backlight,
 #pulseaudio,
 #tray,
-#mode
-{
+#mode {
     padding: 0 5px;
+}
+
+#clock {
+    padding-top: 2px;
+    font-weight: bold;
+}
+
+#taskbar #pulseaudio button label {
+    padding-top: 1px;
+}
+
+#pulseaudio {
+    padding-top: 2px;
+}
+
+#language {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+#tray {
+    padding-top: 2px;
 }
 
 #mode {

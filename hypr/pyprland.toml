@@ -1,0 +1,26 @@
+[pyprland]
+plugins = [
+    "scratchpads"
+]
+
+[scratchpads.yazi]
+command = "wezterm start --class yazi -- yazi"
+class = "yazi"
+animation = "fromTop"
+size = "80% 80%"
+
+[scratchpads.telegram]
+command = "telegram-desktop"
+class = "org.telegram.desktop"
+lazy = true
+animation = "fromTop"
+process_tracking = false
+size = "80% 80%"
+
+[scratchpads.pavucontrol]
+command = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
+lazy = true
+unfocus = "hide"
+animation = "fromRight"
+size = "40% 90%"

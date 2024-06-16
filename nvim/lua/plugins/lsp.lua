@@ -154,7 +154,7 @@ local setup = function()
 				on_attach = function(_, _)
 					local default_opts = { noremap = false, silent = true }
 					local map = vim.keymap.set
-					map("", "<space>f", ":Format<cr>:OrganizeImports<cr>", default_opts)
+					map("", "<space>p", ":Format<cr>:OrganizeImports<cr>", default_opts)
 				end,
 				commands = {
 					OrganizeImports = {
@@ -175,6 +175,19 @@ local setup = function()
 		end,
 	})
 
+	-- Hyprlang LSP
+	vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+		pattern = { "*.hl", "hypr*.conf" },
+		callback = function(event)
+			print(string.format("starting hyprls for %s", vim.inspect(event)))
+			vim.lsp.start({
+				name = "hyprlang",
+				cmd = { "hyprls" },
+				root_dir = vim.fn.getcwd(),
+			})
+		end,
+	})
+
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		-- Disable signs
 		signs = false,
@@ -189,6 +202,7 @@ local setup = function()
 	map("n", "gd", vim_lsp.definition)
 	-- map('', '<space>f', vim_lsp.format)
 	map("", "<space>t", ":ClangdSwitchSourceHeader<CR>")
+
 end
 
 local M = {

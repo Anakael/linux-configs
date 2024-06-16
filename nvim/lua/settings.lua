@@ -55,3 +55,4 @@ vim.api.nvim_create_autocmd("FileType", {
         cmd(qf_size .. "wincmd_")
     end
 })
+

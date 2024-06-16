@@ -1,28 +1,14 @@
 {
     "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 21, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "wlr/taskbar"],
-    //"modules-center": [],
-    "modules-right": ["sway/language", "pulseaudio", "clock", "tray"],
+    "modules-left": [ "hyprland/workspaces" ],
+    "modules-center": [ "wlr/taskbar" ],
+    "modules-right": ["hyprland/language", "pulseaudio", "clock", "tray"],
     // Modules configuration
-    //"wlr/workspaces": {
-    //    "disable-scroll": false,
-    //    "format": "{icon}",
-    //    "format-icons": {
-    //        "1": "",
-    //        "2": "",
-    //        "3": "",
-    //        "4": "",
-    //        "urgent": "",
-    //        "default": ""
-    //    }
-    //},
-    "sway/workspaces": {
-        "disable-scroll": false,
-        "format": "{icon}",
+    "hyprland/workspaces": {
+        "format": "{name}: {icon}",
+	    "on-click": "activate",
         "format-icons": {
             "1": "",
             "2": "",
@@ -32,25 +18,45 @@
             "default": ""
         }
     },
+    "sway/workspaces": {
+        "format": "{icon}",
+	    "on-click": "activate",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "high-priority-named": [
+                "1", "2"
+            ],
+            "focused": "",
+            "default": ""
+        }
+    },
 	"wlr/taskbar": {
-    	"format": "{icon}  {title}",
+    	"format": "{icon} {title}",
 	    "on-click": "activate",
     	"on-click-middle": "close",
 		"tooltip": false,
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition"
+		},
 		"ignore-list": [
-			"Alacritty"
-		]
-    },
-    "sway/mode": {
-        "format": "{}"
+			"File Upload", "org.telegram.desktop", "org.pulseaudio.pavucontrol", "yazi"
+		],
+        "rewrite": {
+            ".*(Firefox Developer Edition)$": " Firefox"
+        },
+        "icon-size": 24
     },
     "tray": {
         "spacing": 5
     },
     "clock": {
-        "format-alt": "{:%Y-%m-%d}",
-        "tooltip": false,
-        "interval": 30
+        "format-alt": "{:%d-%m-%Y}",
+        "tooltip": true,
+        "interval": 30,
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
@@ -60,9 +66,9 @@
         },
 		"scroll-step": 5,
         "on-click": "amixer set Master toggle",
-        "on-click-middle": "pavucontrol"
+        "on-click-middle": "pypr toggle pavucontrol"
     },
-	"sway/language": {
-		"format": "{}"
+	"hyprland/language": {
+		"format": "{short}"
 	}
 }

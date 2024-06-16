@@ -2,3 +2,4 @@ spell
 state.yml
 nvim/.netrwhist
 nvim/lua/.luarc.json
+nvim/lazy-lock.json
