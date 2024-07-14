@@ -31,5 +31,4 @@ map("n", "t5", "5gt", default_options)
 
 -- git
 map("", "<leader>g", ":LazyGit<cr>", default_options)
-map("", "<leader>d", ":DiffviewOpen<CR>", default_options)
-
+map("", "<leader>d", ":DiffViewOpen<CR>", default_options)

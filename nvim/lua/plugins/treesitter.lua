@@ -15,6 +15,7 @@ local setup = function()
 			"markdown",
 			"markdown_inline",
 			"hyprlang",
+            "just"
 		},
 		highlight = {
 			enable = true,
