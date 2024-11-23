@@ -13,6 +13,7 @@ local M = {
     oil = require('plugins.oil').setup,
     trouble = require('plugins.trouble').setup,
     conform = require('plugins.conform').setup,
+    flash = require('plugins.flash'),
 }
 
 return M

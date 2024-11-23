@@ -9,7 +9,7 @@ local setup = function()
 			"omnisharp",
 			"rust_analyzer",
 			"dockerls",
-			"tsserver",
+			"ts_ls",
 			"eslint",
 			"pylyzer",
 		},
@@ -116,7 +116,7 @@ local setup = function()
 				},
 			})
 		end,
-		["tsserver"] = function()
+		["ts_ls"] = function()
 			local function organize_imports()
 				local params = {
 					command = "_typescript.organizeImports",
@@ -124,7 +124,7 @@ local setup = function()
 				}
 				vim.lsp.buf.execute_command(params)
 			end
-			lsp_config.tsserver.setup({
+			lsp_config.ts_ls.setup({
 				settings = {
 					typescript = {
 						inlayHints = {

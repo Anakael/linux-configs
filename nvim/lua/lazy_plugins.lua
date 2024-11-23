@@ -190,6 +190,12 @@ require("lazy").setup({
 				"nvim-lua/plenary.nvim",
 			},
 		},
+		{
+			"folke/flash.nvim",
+			event = "VeryLazy",
+			opts = plugins.flash.opts,
+			keys = plugins.flash.keys,
+		},
 		"rafamadriz/friendly-snippets",
 		"nvim-lua/plenary.nvim",
 		"kyazdani42/nvim-web-devicons",
