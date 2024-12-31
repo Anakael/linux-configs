@@ -1,4 +1,10 @@
 {
+    "cr": {
+        "prefix": "cr",
+        "body": [
+            "Console.ReadLine()!;"
+        ]
+    },
     "cw": {
         "prefix": "cw",
         "body": [

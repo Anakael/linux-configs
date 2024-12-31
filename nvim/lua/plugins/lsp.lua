@@ -10,8 +10,7 @@ local setup = function()
 			"rust_analyzer",
 			"dockerls",
 			"ts_ls",
-			"eslint",
-			"pylyzer",
+			"eslint"
 		},
 	})
 
@@ -163,16 +162,7 @@ local setup = function()
 					},
 				},
 			})
-		end,
-		["pylyzer"] = function()
-			lsp_config.pylyzer.setup({
-				settings = {
-					python = {
-						inlayHints = true,
-					},
-				},
-			})
-		end,
+		end
 	})
 
 	-- Hyprlang LSP
@@ -200,7 +190,6 @@ local setup = function()
 	local vim_lsp = vim.lsp.buf
 	-- lsp
 	map("n", "gd", vim_lsp.definition)
-	-- map('', '<space>f', vim_lsp.format)
 	map("", "<space>t", ":ClangdSwitchSourceHeader<CR>")
 
 end
