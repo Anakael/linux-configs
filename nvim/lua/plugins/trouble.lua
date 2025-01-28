@@ -5,7 +5,7 @@ local setup = function()
         severity = vim.diagnostic.severity.ERROR
     })
     local map = vim.keymap.set
-    map('n', '<leader>xt', function() trouble.toggle('workspace_diagnostics') end)
+    map('n', '<leader>xx', function() trouble.toggle('diagnostics') end)
 end
 
 local M = {

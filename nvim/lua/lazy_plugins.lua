@@ -159,6 +159,7 @@ require("lazy").setup({
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
+            config = plugins.spectre
 		},
 		{
 			"folke/trouble.nvim",

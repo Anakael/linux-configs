@@ -14,6 +14,7 @@ local M = {
     trouble = require('plugins.trouble').setup,
     conform = require('plugins.conform').setup,
     flash = require('plugins.flash'),
+    spectre = require('plugins.spectre').setup,
 }
 
 return M
