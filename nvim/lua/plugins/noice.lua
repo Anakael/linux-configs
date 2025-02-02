@@ -39,10 +39,11 @@ local setup = function()
 		},
 		views = {
 			cmdline_popup = {
-				border = {
-					style = "none",
-					padding = { 1, 2 },
-				},
+				-- border = {
+				-- 	style = "none",
+				-- 	padding = { 1, 2 },
+				-- },
+                border = {},
 				filter_options = {},
 				win_options = {
 					winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",

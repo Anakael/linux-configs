@@ -15,11 +15,11 @@ local plugins = require("plugins")
 
 require("lazy").setup({
 	{
-		{
-			"EdenEast/nightfox.nvim",
-			priority = 10000,
-			config = plugins.nightfox,
-		},
+		-- {
+		-- 	"EdenEast/nightfox.nvim",
+		-- 	priority = 10000,
+		-- 	config = plugins.nightfox,
+		-- },
 		{
 			"folke/neodev.nvim",
 			config = true,
@@ -159,7 +159,7 @@ require("lazy").setup({
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
-            config = plugins.spectre
+			config = plugins.spectre,
 		},
 		{
 			"folke/trouble.nvim",
@@ -197,6 +197,11 @@ require("lazy").setup({
 			opts = plugins.flash.opts,
 			keys = plugins.flash.keys,
 		},
+		{
+			"wtfox/jellybeans.nvim",
+			priority = 1000,
+			config = plugins.jellybeans,
+		},
 		"rafamadriz/friendly-snippets",
 		"nvim-lua/plenary.nvim",
 		"kyazdani42/nvim-web-devicons",
@@ -207,6 +212,6 @@ require("lazy").setup({
 	},
 }, {
 	install = {
-		colorscheme = { "nightfox" },
+		colorscheme = { "jellybeans" },
 	},
 })

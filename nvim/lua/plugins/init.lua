@@ -15,6 +15,7 @@ local M = {
     conform = require('plugins.conform').setup,
     flash = require('plugins.flash'),
     spectre = require('plugins.spectre').setup,
+    jellybeans = require('plugins.jellybeans').setup,
 }
 
 return M

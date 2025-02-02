@@ -1,7 +1,8 @@
 local setup = function()
     require('lualine').setup({
         options = {
-            theme = 'codedark'
+            -- theme = 'codedark'
+            theme = 'jellybeans'
         },
         sections = {
             lualine_c = { { 'filename', path = 1 } },
