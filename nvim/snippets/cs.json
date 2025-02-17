@@ -38,6 +38,15 @@
             "}"
         ]
     },
+    "sclass": {
+        "prefix": "sclass",
+        "body": [
+            "public static class ${TM_FILENAME_BASE}",
+            "{",
+            "    ${0}",
+            "}"
+        ]
+    },
     "interface": {
         "prefix": "interface",
         "body": [

@@ -12,7 +12,6 @@ map("n", "q:", "")
 map("n", "<leader>w", ":w<CR>", default_options)
 map("n", "<leader>q", ":q<CR>", default_options)
 map("n", "<F1>", ":noh<CR>", default_options)
-map("n", "<F2>", ":set spell!<CR>", default_options)
 
 -- Windows moving
 map("n", "<C-J>", "<C-W><C-J>", default_options)

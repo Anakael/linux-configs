@@ -92,7 +92,7 @@ local setup = function()
 		end,
 		["omnisharp"] = function()
 			lsp_config.omnisharp.setup({
-                -- cmd = {'dotnet' ,'/home/dmitry/Documents/Programming/omnisharp-roslyn/artifacts/publish/OmniSharp.Stdio.Driver/linux-x64/net6.0/OmniSharp.dll', '-v'},
+                cmd = {'dotnet' ,'/home/dmitry/Documents/Programming/omnisharp-roslyn/artifacts/publish/OmniSharp.Stdio.Driver/linux-x64/net6.0/OmniSharp.dll'},
 				handlers = {
 					["textDocument/definition"] = require("omnisharp_extended").handler,
 				},

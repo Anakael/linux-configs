@@ -10,16 +10,10 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
 local plugins = require("plugins")
 
 require("lazy").setup({
 	{
-		-- {
-		-- 	"EdenEast/nightfox.nvim",
-		-- 	priority = 10000,
-		-- 	config = plugins.nightfox,
-		-- },
 		{
 			"folke/neodev.nvim",
 			config = true,
@@ -63,6 +57,7 @@ require("lazy").setup({
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-cmdline",
 				"onsails/lspkind-nvim",
 				"saadparwaiz1/cmp_luasnip",
 			},
@@ -170,19 +165,6 @@ require("lazy").setup({
 			config = plugins.conform,
 		},
 		{
-			"kdheepak/lazygit.nvim",
-			cmd = {
-				"LazyGit",
-				"LazyGitConfig",
-				"LazyGitCurrentFile",
-				"LazyGitFilter",
-				"LazyGitFilterCurrentFile",
-			},
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-		},
-		{
 			"sindrets/diffview.nvim",
 			cmd = {
 				"DiffViewOpen",
@@ -198,9 +180,25 @@ require("lazy").setup({
 			keys = plugins.flash.keys,
 		},
 		{
+
+			"bassamsdata/namu.nvim",
+			config = plugins.namu,
+		},
+		{
 			"wtfox/jellybeans.nvim",
 			priority = 1000,
 			config = plugins.jellybeans,
+		},
+		{
+			"folke/snacks.nvim",
+			priority = 1000,
+			lazy = false,
+			opts = plugins.snacks.opts,
+			keys = plugins.snacks.keys,
+		},
+		{
+			"karb94/neoscroll.nvim",
+			config = plugins.neoscroll,
 		},
 		"rafamadriz/friendly-snippets",
 		"nvim-lua/plenary.nvim",

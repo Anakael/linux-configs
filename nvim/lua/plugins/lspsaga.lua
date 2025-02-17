@@ -3,10 +3,6 @@ local setup = function()
 		lightbulb = {
 			enable = false,
 		},
-		outline = {
-			win_position = "left",
-			auto_preview = false,
-		},
 		diagnostic = {
 			on_insert = false,
 		},
@@ -27,9 +23,7 @@ local setup = function()
 		lspsaga_diagnostic:goto_next(severity_opts)
 	end)
 	map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
-	map({ "n", "t" }, "<A-S-t>", "<cmd>Lspsaga term_toggle fish<CR>")
 	map("n", "<space>d", "<cmd>Lspsaga hover_doc<CR>")
-	map("n", "<F8>", "<cmd>Lspsaga outline<CR>")
 end
 
 local M = {

@@ -38,14 +38,16 @@ local function get_ns()
                 local closest_csproj = string.match(name, '(.*)%.csproj')
                 if closest_csproj ~= nil then
                     local root_namespace = ""
-                    local root_namespace_mayble_cache = namespaces_cache[closest_csproj]
-                    if root_namespace_mayble_cache ~= nil then
-                        root_namespace = root_namespace_mayble_cache
+                    local root_namespace_maybe_cache = namespaces_cache[closest_csproj]
+                    if root_namespace_maybe_cache ~= nil then
+                        root_namespace = root_namespace_maybe_cache
                     else
                         local csproj_data = path.new(dir):joinpath(name):read()
                         local root_namespace_from_file = string.match(csproj_data, "<RootNamespace>(.+)</RootNamespace>")
                         if root_namespace_from_file ~= nil then
                             root_namespace = root_namespace_from_file:expand_vars(closest_csproj, csproj_data)
+                        else
+                            root_namespace = closest_csproj
                         end
                     end
                     namespaces_cache[closest_csproj] = root_namespace

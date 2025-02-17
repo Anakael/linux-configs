@@ -16,6 +16,9 @@ local M = {
     flash = require('plugins.flash'),
     spectre = require('plugins.spectre').setup,
     jellybeans = require('plugins.jellybeans').setup,
+    namu = require('plugins.namu').namu,
+    snacks = require('plugins.snacks'),
+    neoscroll = require('plugins.neoscroll').setup,
 }
 
 return M
