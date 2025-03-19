@@ -19,6 +19,7 @@ local M = {
     namu = require('plugins.namu').namu,
     snacks = require('plugins.snacks'),
     neoscroll = require('plugins.neoscroll').setup,
+    roslyn = require('plugins.roslyn'),
 }
 
 return M

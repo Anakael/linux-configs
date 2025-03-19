@@ -1,12 +1,16 @@
 local setup = function()
-	require("mason").setup()
+	require("mason").setup({
+        registries = {
+            "github:mason-org/mason-registry",
+            "github:Crashdummyy/mason-registry"
+        }
+    })
 	require("mason-lspconfig").setup({
 		ensure_installed = {
 			"cssls",
 			"html",
 			"jsonls",
 			"lua_ls",
-			"omnisharp",
 			"rust_analyzer",
 			"dockerls",
 			"ts_ls",
@@ -85,32 +89,6 @@ local setup = function()
 								hideClosureInitialization = false,
 								hideNamedConstructor = false,
 							},
-						},
-					},
-				},
-			})
-		end,
-		["omnisharp"] = function()
-			lsp_config.omnisharp.setup({
-                cmd = {'dotnet' ,'/home/dmitry/Documents/Programming/omnisharp-roslyn/artifacts/publish/OmniSharp.Stdio.Driver/linux-x64/net6.0/OmniSharp.dll'},
-				handlers = {
-					["textDocument/definition"] = require("omnisharp_extended").handler,
-				},
-				settings = {
-					RoslynExtensionsOptions = {
-						InlayHintsOptions = {
-							EnableForParameters = true,
-							ForLiteralParameters = true,
-							ForIndexerParameters = true,
-							ForObjectCreationParameters = true,
-							ForOtherParameters = true,
-							SuppressForParametersThatDifferOnlyBySuffix = false,
-							SuppressForParametersThatMatchMethodIntent = false,
-							SuppressForParametersThatMatchArgumentName = false,
-							EnableForTypes = true,
-							ForImplicitVariableTypes = true,
-							ForLambdaParameterTypes = true,
-							ForImplicitObjectCreatio = true,
 						},
 					},
 				},

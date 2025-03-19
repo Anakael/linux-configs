@@ -27,7 +27,6 @@ require("lazy").setup({
 			dependencies = {
 				"williamboman/mason-lspconfig.nvim",
 				"neovim/nvim-lspconfig",
-				"Hoffs/omnisharp-extended-lsp.nvim",
 				"ray-x/lsp_signature.nvim",
 			},
 			config = plugins.lsp,
@@ -203,6 +202,11 @@ require("lazy").setup({
 		{
 			"karb94/neoscroll.nvim",
 			config = plugins.neoscroll,
+		},
+		{
+			"seblyng/roslyn.nvim",
+			ft = "cs",
+			opts = plugins.roslyn.opts,
 		},
 		"rafamadriz/friendly-snippets",
 		"nvim-lua/plenary.nvim",
