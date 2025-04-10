@@ -59,8 +59,9 @@
     "record": {
         "prefix": "record",
         "body": [
-            "public record ${TM_FILENAME_BASE} (",
-            "    ${0});"
+            "public record ${TM_FILENAME_BASE}(",
+            "    ${0}",
+            ");"
         ]
     },
     "enum": {
