@@ -208,6 +208,11 @@ require("lazy").setup({
 			ft = "cs",
 			opts = plugins.roslyn.opts,
 		},
+		{
+			"chentoast/marks.nvim",
+			event = "VeryLazy",
+			opts = {},
+		},
 		"rafamadriz/friendly-snippets",
 		"nvim-lua/plenary.nvim",
 		"kyazdani42/nvim-web-devicons",
