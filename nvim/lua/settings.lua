@@ -45,8 +45,6 @@ cmd [[
 g.instant_markdown_mathjax = 1
 g.vim_markdown_math = 1
 
--- -- Dap
-
 -- Copen
 local qf_size = "30"
 vim.api.nvim_create_autocmd("FileType", {
@@ -55,4 +53,3 @@ vim.api.nvim_create_autocmd("FileType", {
         cmd(qf_size .. "wincmd_")
     end
 })
-

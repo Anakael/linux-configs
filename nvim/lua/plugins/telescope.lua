@@ -1,30 +1,30 @@
-local setup = function()
-    local g = vim.g
-    g.netrw_banner = 0
-    require('telescope').setup({
-        defaults = {
-            layout_strategy = "vertical",
-            layout_config = {
-                preview_height = 0.7
-            }
+return {
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-telescope/telescope-file-browser.nvim",
+		},
+		cmd = "Telescope",
+		opts = {
+			defaults = {
+				layout_strategy = "vertical",
+				layout_config = { preview_height = 0.7, },
+			},
         },
-    })
-    require('telescope').load_extension('file_browser')
-    require('telescope').load_extension('dap')
-    require("telescope").load_extension("noice")
-    require("telescope").load_extension("fzf")
+        keys = {
+            { "<leader>f", function() require("telescope.builtin").find_files() end },
+            { "<leader>s", function() require("telescope.builtin").grep_string() end },
+            { "<leader><S-s>", function() require("telescope.builtin").live_grep() end },
+            { "gu", function() require("telescope.builtin").lsp_references() end },
+            { "gi", function() require("telescope.builtin").lsp_implementations() end },
+        },
+        config = function(_, opts)
+            local telescope = require("telescope")
 
-    local map = vim.keymap.set
-    local telescope = require('telescope.builtin')
-    map('n', '<leader>f', telescope.find_files)
-    map('n', '<leader>s', telescope.grep_string)
-    map('n', '<leader><S-s>', telescope.live_grep)
-    map('n', 'gu', telescope.lsp_references)
-    map('n', 'gi', telescope.lsp_implementations)
-end
-
-local M = {
-    setup = setup
+            telescope.setup(opts)
+            telescope.load_extension("file_browser")
+            -- telescope.load_extension("noice")
+            telescope.load_extension("fzf")
+        end,
+	},
 }
-
-return M

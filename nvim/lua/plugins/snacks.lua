@@ -1,23 +1,16 @@
----@type snacks.Config
-local opts = {
-	image = { enabled = true },
-	indent = { enabled = true },
-	lazygit = { enabled = true },
-}
-
-local keys = {
+return {
 	{
-		"<leader>g",
-		function()
-			Snacks.lazygit()
-		end,
-		desc = "Lazygit",
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+        ---@type snacks.Config
+		opts = {
+            image = { enabled = true },
+            indent = { enabled = true },
+            lazygit = { enabled = true },
+        },
+		keys = {
+	        { "<leader>g", function() require("snacks").lazygit() end },
+        }
 	},
 }
-
-local M = {
-	opts = opts,
-    keys = keys
-}
-
-return M

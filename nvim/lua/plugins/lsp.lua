@@ -1,52 +1,38 @@
-local setup = function()
-	require("mason").setup({
-        registries = {
-            "github:mason-org/mason-registry",
-            "github:Crashdummyy/mason-registry"
-        }
-    })
-	require("mason-lspconfig").setup({
-		ensure_installed = {
-			"cssls",
-			"html",
-			"jsonls",
-			"lua_ls",
-			"rust_analyzer",
-			"dockerls",
-			"ts_ls",
-			"eslint"
+return {
+	{
+		"mason-org/mason.nvim",
+		opts = {
+			registries = {
+				"github:mason-org/mason-registry",
+				"github:Crashdummyy/mason-registry",
+			},
 		},
-	})
-
-	local lsp_config = require("lspconfig")
-
-	require("mason-lspconfig").setup_handlers({
-		function(server_name)
-			require("lspconfig")[server_name].setup({})
-		end,
-		["cssls"] = function()
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-			lsp_config.cssls.setup({
-				capabilities = capabilities,
-			})
-		end,
-		["lua_ls"] = function()
-			lsp_config.lua_ls.setup({
-				settings = {
-					Lua = {
-						telemetry = {
-							enable = false,
-						},
-						hint = {
-							enable = true,
-						},
-					},
-				},
-			})
-		end,
-		["rust_analyzer"] = function()
-			lsp_config.rust_analyzer.setup({
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+		lazy = false,
+		opts = {
+			ensure_installed = {
+				"cssls",
+				"html",
+				"jsonls",
+				"lua_ls",
+				"dockerls",
+				"ts_ls",
+				"eslint",
+				"eslint",
+				"pyright",
+				"rust_analyzer",
+				"typos_lsp",
+				"yamlls",
+			},
+		},
+		config = function(_, opts)
+			vim.lsp.config("rust_analyzer", {
 				settings = {
 					["rust-analyzer"] = {
 						checkOnSave = {
@@ -93,16 +79,21 @@ local setup = function()
 					},
 				},
 			})
-		end,
-		["ts_ls"] = function()
-			local function organize_imports()
-				local params = {
-					command = "_typescript.organizeImports",
-					arguments = { vim.api.nvim_buf_get_name(0) },
-				}
-				vim.lsp.buf.execute_command(params)
-			end
-			lsp_config.ts_ls.setup({
+
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						telemetry = {
+							enable = false,
+						},
+						hint = {
+							enable = true,
+						},
+					},
+				},
+			})
+
+			vim.lsp.config("ts_ls", {
 				settings = {
 					typescript = {
 						inlayHints = {
@@ -129,52 +120,80 @@ local setup = function()
 						},
 					},
 				},
-				on_attach = function(_, _)
-					local default_opts = { noremap = false, silent = true }
-					local map = vim.keymap.set
-					map("", "<space>p", ":Format<cr>:OrganizeImports<cr>", default_opts)
-				end,
-				commands = {
-					OrganizeImports = {
-						organize_imports,
-						description = "Organize Imports",
+			})
+
+			vim.diagnostic.config({
+				virtual_lines = true,
+				severity_sort = true,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+						[vim.diagnostic.severity.WARN] = "WarningMsg",
 					},
 				},
 			})
-		end
-	})
 
-	-- Hyprlang LSP
-	vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-		pattern = { "*.hl", "hypr*.conf" },
-		callback = function(event)
-			print(string.format("starting hyprls for %s", vim.inspect(event)))
-			vim.lsp.start({
-				name = "hyprlang",
-				cmd = { "hyprls" },
-				root_dir = vim.fn.getcwd(),
-			})
+			require("mason-lspconfig").setup(opts)
 		end,
-	})
+		keys = {
+			{ "gd", vim.lsp.buf.definition },
+			{ "<leader>rn", vim.lsp.buf.rename },
+			{
+				"]r",
+				function()
+					vim.diagnostic.jump({ count = 1, severity = { vim.diagnostic.severity.ERROR } })
+				end,
+			},
+			{
+				"[r",
+				function()
+					vim.diagnostic.jump({ count = -1, severity = { vim.diagnostic.severity.ERROR } })
+				end,
+			},
+		},
+	},
+	{
+		"seblyng/roslyn.nvim",
+		ft = "cs",
+		---@module 'roslyn.config'
+		---@type RoslynNvimConfig
+		opts = {
+			filewatching = "roslyn",
+		},
+		config = function(_, opts)
+			vim.lsp.config("roslyn", {
+				settings = {
+					["csharp|inlay_hints"] = {
+						csharp_enable_inlay_hints_for_implicit_object_creation = true,
+						csharp_enable_inlay_hints_for_implicit_variable_types = true,
+						csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+						csharp_enable_inlay_hints_for_types = true,
+						dotnet_enable_inlay_hints_for_indexer_parameters = true,
+						dotnet_enable_inlay_hints_for_literal_parameters = true,
+						dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+						dotnet_enable_inlay_hints_for_other_parameters = true,
+						dotnet_enable_inlay_hints_for_parameters = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+					},
+				},
+			})
 
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		-- Disable signs
-		signs = false,
-	})
-
-	require("lsp_signature").setup({
-		floating_window_above_cur_line = true,
-	})
-	local map = vim.keymap.set
-	local vim_lsp = vim.lsp.buf
-	-- lsp
-	map("n", "gd", vim_lsp.definition)
-	map("", "<space>t", ":ClangdSwitchSourceHeader<CR>")
-
-end
-
-local M = {
-	setup = setup,
+			require("roslyn").setup(opts)
+		end,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "InsertEnter",
+		opts = {
+			floating_window_above_cur_line = true,
+		},
+	},
 }
-
-return M

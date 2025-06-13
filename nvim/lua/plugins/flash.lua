@@ -1,33 +1,29 @@
-local keys = {
+return {
 	{
-		"s",
-		mode = { "n", "x", "o" },
-		function()
-			require("flash").jump()
-		end,
-		desc = "Flash",
-	},
-	{
-		"R",
-		mode = { "n", "x", "o" },
-		function()
-			require("flash").treesitter()
-		end,
-		desc = "Flash Treesitter",
-	},
-}
-
-local opts = {
-	modes = {
-		char = {
-			jump_labels = true,
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {
+			modes = {
+				char = {
+					jump_labels = true,
+				},
+			},
+		},
+		keys = {
+			{
+				"s",
+				function()
+					require("flash").jump()
+				end,
+				mode = { "n", "x", "o" },
+			},
+			{
+				"R",
+				function()
+					require("flash").treesitter()
+				end,
+				mode = { "n", "x", "o" },
+			},
 		},
 	},
 }
-
-local M = {
-	keys = keys,
-	opts = opts,
-}
-
-return M
