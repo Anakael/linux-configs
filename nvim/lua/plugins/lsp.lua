@@ -142,20 +142,7 @@ return {
 			require("mason-lspconfig").setup(opts)
 		end,
 		keys = {
-			{ "gd", vim.lsp.buf.definition },
-			{ "<leader>rn", vim.lsp.buf.rename },
-			{
-				"]r",
-				function()
-					vim.diagnostic.jump({ count = 1, severity = { vim.diagnostic.severity.ERROR } })
-				end,
-			},
-			{
-				"[r",
-				function()
-					vim.diagnostic.jump({ count = -1, severity = { vim.diagnostic.severity.ERROR } })
-				end,
-			},
+			{ "gd", vim.lsp.buf.definition }
 		},
 	},
 	{
