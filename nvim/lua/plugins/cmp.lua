@@ -75,12 +75,8 @@ return {
 					ghost_text = true,
 				},
 				window = {
-					documentation = cmp.config.window.bordered({
-						winhighlight = "normal:normal,floatborder:borderbg,cursorline:pmenusel,search:none",
-					}),
-					completion = cmp.config.window.bordered({
-						winhighlight = "normal:normal,floatborder:borderbg,cursorline:pmenusel,search:none",
-					}),
+					documentation = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered(),
 				},
 			}
 		end,

@@ -8,7 +8,7 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>rn", ":Lspsaga rename<CR>" },
+			{ "<leader>rn", ":Lspsaga rename<CR>", silent = true },
 			{ "<space>a", ":Lspsaga code_action<CR>", mode = { "n", "v" }, silent = true },
 			{ "<space>d", ":Lspsaga hover_doc<CR>", silent = true },
 			{

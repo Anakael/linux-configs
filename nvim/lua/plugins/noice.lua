@@ -47,15 +47,6 @@ return {
 					opts = { skip = true },
 				},
 			},
-			views = {
-				cmdline_popup = {
-					border = {},
-					filter_options = {},
-					win_options = {
-						winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-					},
-				},
-			},
 		},
 		keys = {
 			{ "<A-n>", ":NoiceDismiss<cr>" },
