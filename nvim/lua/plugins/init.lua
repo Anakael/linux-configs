@@ -24,6 +24,11 @@ return {
 		config = true,
 	},
 	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+		config = true,
+	},
+	{
 		"karb94/neoscroll.nvim",
 		config = true,
 	},

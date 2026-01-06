@@ -9,7 +9,7 @@ return {
 		config = function(_, opts)
 			local jellybeans = require("jellybeans")
 			jellybeans.setup(opts)
-			vim.cmd([[colorscheme jellybeans-mono]])
+			vim.cmd([[colorscheme jellybeans]])
 		end,
 	},
 }
