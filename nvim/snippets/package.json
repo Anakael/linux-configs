@@ -23,22 +23,9 @@
             },
             {
                 "language": [
-                    "typescriptreact"
-                ],
-                "path": "./typescriptreact.json"
-            },
-            {
-                "language": [
                     "lua"
                 ],
                 "path": "./lua.json"
-            },
-            {
-                "language": [
-                    "typescript",
-                    "typescriptreact"
-                ],
-                "path": "./tsdoc.json"
             },
             {
                 "language": [

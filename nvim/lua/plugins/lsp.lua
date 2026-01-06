@@ -24,7 +24,6 @@ return {
 				"dockerls",
 				"ts_ls",
 				"eslint",
-				"eslint",
 				"pyright",
 				"rust_analyzer",
 				"typos_lsp",

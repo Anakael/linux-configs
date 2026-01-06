@@ -6,6 +6,9 @@ return {
 			lightbulb = {
 				enable = false,
 			},
+			ui = {
+				border = "none",
+			},
 		},
 		keys = {
 			{ "<leader>rn", ":Lspsaga rename<CR>", silent = true },
