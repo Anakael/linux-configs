@@ -142,7 +142,7 @@ return {
 			require("mason-lspconfig").setup(opts)
 		end,
 		keys = {
-			{ "gd", vim.lsp.buf.definition }
+			{ "gd", vim.lsp.buf.definition },
 		},
 	},
 	{
@@ -181,6 +181,9 @@ return {
 		event = "InsertEnter",
 		opts = {
 			floating_window_above_cur_line = true,
+			handler_opts = {
+				border = "none",
+			},
 		},
 	},
 }

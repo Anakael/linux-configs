@@ -61,8 +61,9 @@ return {
 					end, { "i", "s" }),
 				},
 				formatting = {
+					fields = { "abbr", "kind", "menu" },
 					format = require("lspkind").cmp_format({
-						with_text = false,
+						mode = "symbol",
 						menu = {
 							buffer = "[Buff]",
 							nvim_lsp = "[LSP]",
@@ -75,8 +76,12 @@ return {
 					ghost_text = true,
 				},
 				window = {
-					documentation = cmp.config.window.bordered(),
-					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered({
+						winhighlight = "Normal:BlinkCmpDoc",
+					}),
+					completion = cmp.config.window.bordered({
+						winhighlight = "Normal:BlinkCmpMenu",
+					}),
 				},
 			}
 		end,
@@ -104,7 +109,9 @@ return {
 				sources = cmp.config.sources({
 					{ name = "path" },
 				}, {
-					{ name = "cmdline" },
+					{ name = "cmdline", option = {
+						ignore_cmds = { "Man", "!" },
+					} },
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})
