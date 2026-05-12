@@ -82,14 +82,6 @@
             "}"
         ]
     },
-    "doc": {
-        "prefix": "///",
-        "body": [
-            "/// <summary>",
-            "/// ${0}.",
-            "/// </summary>"
-        ]
-    },
     "param": {
         "prefix": "<p",
         "body": [

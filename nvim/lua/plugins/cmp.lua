@@ -61,9 +61,8 @@ return {
 					end, { "i", "s" }),
 				},
 				formatting = {
-					fields = { "abbr", "kind", "menu" },
+					fields = { "abbr", "icon", "menu" },
 					format = require("lspkind").cmp_format({
-						mode = "symbol",
 						menu = {
 							buffer = "[Buff]",
 							nvim_lsp = "[LSP]",
