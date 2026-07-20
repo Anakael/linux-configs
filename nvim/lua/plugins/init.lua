@@ -18,11 +18,13 @@ return {
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
 	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-	},
+{
+        "saghen/blink.pairs",
+        version = '*',
+        dependencies = 'saghen/blink.lib',
+        build = function() require('blink.pairs').download():pwait(60000) end,
+        config = true,
+    },
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
@@ -55,9 +57,6 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		cmd = "DiffViewOpen",
-		keys = {
-			{ "<leader>d", ":DiffViewOpen<CR>" },
-		},
 	},
 	{
 		"MysticalDevil/inlay-hints.nvim",

@@ -2,8 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
-			"windwp/nvim-ts-autotag",
-			"nvim-treesitter/playground",
+			"windwp/nvim-ts-autotag"
 		},
 		lazy = false,
 		build = ":TSUpdate",
@@ -22,14 +21,8 @@ return {
 				"bash",
 				"markdown",
 				"markdown_inline",
-				"hyprlang",
 				"just",
 			},
 		},
-		init = function()
-			vim.filetype.add({
-				pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
-			})
-		end,
 	},
 }
