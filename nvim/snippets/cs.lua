@@ -32,7 +32,7 @@ local function get_ns()
     for dir in vim.fs.parents(vim.api.nvim_buf_get_name(0)) do
         for name, type in vim.fs.dir(dir) do
             if type == 'file' then
-                if name:endswith('.sln') then
+                if name:endswith('.sln') or name:endswith('.slnx') then
                     return ''
                 end
                 local closest_csproj = string.match(name, '(.*)%.csproj')
@@ -56,7 +56,7 @@ local function get_ns()
                     if root_namespace ~= "" then
                         file_path = file_path:gsub('.*' .. closest_csproj:gsub('%.', '%.'), '')
                     end
-                    local namespace = root_namespace .. file_path:gsub(path.path.sep, '%.')
+                    local namespace = root_namespace .. file_path:gsub('/', '%.')
                     return namespace
                 end
             end
