@@ -49,7 +49,7 @@ return {
 			},
 		},
 		keys = {
-			{ "<A-n>", ":NoiceDismiss<cr>" },
+			{ "<A-n>", ":NoiceDismiss<cr>", desc = "Dismiss notifications" },
 		},
 	},
 }

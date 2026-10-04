@@ -10,7 +10,7 @@ return {
             lazygit = { enabled = true },
         },
 		keys = {
-	        { "<leader>g", function() require("snacks").lazygit() end },
+	        { "<leader>g", function() require("snacks").lazygit() end, desc = "Open Lazygit" },
         }
 	},
 }

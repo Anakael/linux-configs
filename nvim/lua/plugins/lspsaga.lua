@@ -11,11 +11,12 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>rn", ":Lspsaga rename<CR>", silent = true },
-			{ "<space>a", ":Lspsaga code_action<CR>", mode = { "n", "v" }, silent = true },
-			{ "<space>d", ":Lspsaga hover_doc<CR>", silent = true },
+			{ "<leader>rn", ":Lspsaga rename<CR>", silent = true, desc = "LSP rename" },
+			{ "<space>a", ":Lspsaga code_action<CR>", mode = { "n", "v" }, silent = true, desc = "LSP code action" },
+			{ "<space>d", ":Lspsaga hover_doc<CR>", silent = true, desc = "LSP documentation" },
 			{
 				"]g",
+				desc = "Next diagnostic",
 				function()
 					require("lspsaga.diagnostic"):goto_next()
 				end,
@@ -23,6 +24,7 @@ return {
 			},
 			{
 				"[g",
+				desc = "Previous diagnostic",
 				function()
 					require("lspsaga.diagnostic"):goto_prev()
 				end,
@@ -30,6 +32,7 @@ return {
 			},
 			{
 				"]r",
+				desc = "Next error",
 				function()
 					require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 				end,
@@ -37,6 +40,7 @@ return {
 			},
 			{
 				"[r",
+				desc = "Previous error",
 				function()
 					require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 				end,

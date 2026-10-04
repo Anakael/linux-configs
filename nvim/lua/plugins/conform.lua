@@ -32,7 +32,7 @@ return {
 			end, { range = true })
 		end,
 		keys = {
-			{ "<space>f", ":Format<cr>", mode = { "n", "v" }, silent = true },
+			{ "<space>f", ":Format<cr>", mode = { "n", "v" }, silent = true, desc = "Format code" },
 		},
 	},
 }

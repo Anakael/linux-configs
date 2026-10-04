@@ -4,9 +4,24 @@ return {
 		opts = {
 			registries = {
 				"github:mason-org/mason-registry",
-				"github:Crashdummyy/mason-registry",
 			},
 		},
+		config = function(_, opts)
+			require("mason").setup(opts)
+			local registry = require("mason-registry")
+			registry.refresh(function(success)
+				if not success then
+					vim.notify("Mason registry refresh failed; see :MasonLog", vim.log.levels.ERROR)
+					return
+				end
+				for _, name in ipairs({ "stylua", "prettierd", "eslint_d", "csharpier" }) do
+					local package = registry.get_package(name)
+					if not package:is_installed() and not package:is_installing() then
+						package:install()
+					end
+				end
+			end)
+		end,
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
@@ -25,6 +40,7 @@ return {
 				"ts_ls",
 				"eslint",
 				"pyright",
+				"roslyn_ls",
 				"rust_analyzer",
 				"typos_lsp",
 				"yamlls",
@@ -141,91 +157,8 @@ return {
 			require("mason-lspconfig").setup(opts)
 		end,
 		keys = {
-			{ "gd", vim.lsp.buf.definition },
+			{ "gd", vim.lsp.buf.definition, desc = "LSP definition" },
 		},
-	},
-	{
-		"seblyng/roslyn.nvim",
-		ft = "cs",
-		---@module 'roslyn.config'
-		---@type RoslynNvimConfig
-		opts = {
-			filewatching = "roslyn",
-		},
-		config = function(_, opts)
-			vim.lsp.config("roslyn", {
-				settings = {
-					["csharp|inlay_hints"] = {
-						csharp_enable_inlay_hints_for_implicit_object_creation = true,
-						csharp_enable_inlay_hints_for_implicit_variable_types = true,
-						csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-						csharp_enable_inlay_hints_for_types = true,
-						dotnet_enable_inlay_hints_for_indexer_parameters = true,
-						dotnet_enable_inlay_hints_for_literal_parameters = true,
-						dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-						dotnet_enable_inlay_hints_for_other_parameters = true,
-						dotnet_enable_inlay_hints_for_parameters = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-					},
-				},
-			})
-
-			require("roslyn").setup(opts)
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = function(args)
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					local bufnr = args.buf
-
-					if client and (client.name == "roslyn" or client.name == "roslyn_ls") then
-						vim.api.nvim_create_autocmd("InsertCharPre", {
-							desc = "Roslyn: Trigger an auto insert on '/'.",
-							buffer = bufnr,
-							callback = function()
-								local char = vim.v.char
-
-								if char ~= "/" then
-									return
-								end
-
-								local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-								row, col = row - 1, col + 1
-								local uri = vim.uri_from_bufnr(bufnr)
-
-								local params = {
-									_vs_textDocument = { uri = uri },
-									_vs_position = { line = row, character = col },
-									_vs_ch = char,
-									_vs_options = {
-										tabSize = vim.bo[bufnr].tabstop,
-										insertSpaces = vim.bo[bufnr].expandtab,
-									},
-								}
-
-								-- NOTE: We should send textDocument/_vs_onAutoInsert request only after
-								-- buffer has changed.
-								vim.defer_fn(function()
-									client:request(
-										---@diagnostic disable-next-line: param-type-mismatch
-										"textDocument/_vs_onAutoInsert",
-										params,
-										function(err, result, _)
-											if err or not result then
-												return
-											end
-
-											vim.snippet.expand(string.gsub(result._vs_textEdit.newText, "\r\n", "\n"))
-										end,
-										bufnr
-									)
-								end, 1)
-							end,
-						})
-					end
-				end,
-			})
-		end,
 	},
 	{
 		"ray-x/lsp_signature.nvim",

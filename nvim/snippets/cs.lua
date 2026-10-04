@@ -1,74 +1,44 @@
-local ls = require('luasnip')
-local s = ls.snippet
-local f = ls.f
-local fmt = require('luasnip.extras.fmt').fmt
-local path = require('plenary').path
-
-function string:endswith(ending)
-    return ending == "" or self:sub(- #ending) == ending
-end
-
-function string:expand_vars(csproj_name, csproj_data)
-    local template = "$%((.+)%)"
-    local var_to_expand = self:match(template)
-
-    if var_to_expand == nil then
-        return self
-    end
-
-    local var_value = ""
-    if var_to_expand == "MSBuildProjectName" then
-        var_value = csproj_name
-    else
-        var_value = string.match(csproj_data, "<" .. var_to_expand .. ">(.+)</" .. var_to_expand .. ">")
-    end
-
-    return self:gsub(template, var_value)
-end
-
-local namespaces_cache = {}
+local ls = require("luasnip")
+local fmt = require("luasnip.extras.fmt").fmt
 
 local function get_ns()
-    for dir in vim.fs.parents(vim.api.nvim_buf_get_name(0)) do
-        for name, type in vim.fs.dir(dir) do
-            if type == 'file' then
-                if name:endswith('.sln') then
-                    return ''
-                end
-                local closest_csproj = string.match(name, '(.*)%.csproj')
-                if closest_csproj ~= nil then
-                    local root_namespace = ""
-                    local root_namespace_maybe_cache = namespaces_cache[closest_csproj]
-                    if root_namespace_maybe_cache ~= nil then
-                        root_namespace = root_namespace_maybe_cache
-                    else
-                        local csproj_data = path.new(dir):joinpath(name):read()
-                        local root_namespace_from_file = string.match(csproj_data, "<RootNamespace>(.+)</RootNamespace>")
-                        if root_namespace_from_file ~= nil then
-                            root_namespace = root_namespace_from_file:expand_vars(closest_csproj, csproj_data)
-                        else
-                            root_namespace = closest_csproj
-                        end
-                    end
-                    namespaces_cache[closest_csproj] = root_namespace
+	local filename = vim.api.nvim_buf_get_name(0)
+	for dir in vim.fs.parents(filename) do
+		local project, solution
+		for name, kind in vim.fs.dir(dir) do
+			if kind == "file" then
+				if name:match("%.csproj$") then
+					project = project or name
+				elseif name:match("%.slnx?$") then
+					solution = true
+				end
+			end
+		end
 
-                    local file_path = vim.fn.fnamemodify(vim.fn.expand('%:r'), ':h')
-                    if root_namespace ~= "" then
-                        file_path = file_path:gsub('.*' .. closest_csproj:gsub('%.', '%.'), '')
-                    end
-                    local namespace = root_namespace .. file_path:gsub(path.path.sep, '%.')
-                    return namespace
-                end
-            end
-        end
-    end
+		-- A project takes priority over a solution in the same directory.
+		if project then
+			local project_name = project:sub(1, -8)
+			local data = table.concat(vim.fn.readfile(vim.fs.joinpath(dir, project)), "\n")
+			local namespace = data:match("<RootNamespace>%s*(.-)%s*</RootNamespace>") or project_name
+			-- ponytail: direct properties only; use MSBuild evaluation if imports/conditions are needed.
+			namespace = namespace:gsub("%$%(([%w_]+)%)", function(property)
+				if property == "MSBuildProjectName" then
+					return project_name
+				end
+				return data:match("<" .. property .. ">%s*(.-)%s*</" .. property .. ">")
+			end)
+			local relative_dir = vim.fs.relpath(dir, vim.fs.dirname(filename)):gsub("[/\\]", ".")
+			if relative_dir ~= "." then
+				return namespace == "" and relative_dir or namespace .. "." .. relative_dir
+			end
+			return namespace
+		elseif solution then
+			return ""
+		end
+	end
+	return ""
 end
 
 return {
-    s(
-        { trig = 'ns', dscr = 'Namespace' },
-        fmt('namespace {};', {
-            f(get_ns, {})
-        })
-    ),
+	ls.snippet({ trig = "ns", dscr = "Namespace" }, fmt("namespace {};", { ls.f(get_ns, {}) })),
 }

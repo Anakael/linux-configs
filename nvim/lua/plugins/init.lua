@@ -10,6 +10,11 @@ return {
 		opts = {},
 	},
 	{
+		"nvim-mini/mini.ai",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
 		"echasnovski/mini.cursorword",
 		version = false,
 		config = true,
@@ -18,12 +23,12 @@ return {
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
 	},
-{
+    {
         "saghen/blink.pairs",
         version = '*',
         dependencies = 'saghen/blink.lib',
         build = function() require('blink.pairs').download():pwait(60000) end,
-        config = true,
+        config = true
     },
 	{
 		"windwp/nvim-ts-autotag",
@@ -52,11 +57,9 @@ return {
 		config = true,
 	},
 	{
-		"sindrets/diffview.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		cmd = "DiffViewOpen",
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {},
 	},
 	{
 		"MysticalDevil/inlay-hints.nvim",

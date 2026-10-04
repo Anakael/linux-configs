@@ -19,7 +19,7 @@ return {
 			vim.g.loaded_netrwPlugin = 1
 		end,
 		keys = {
-			{ "<leader>n", ":Oil<CR>" },
+			{ "<leader>n", ":Oil<CR>", desc = "Open file manager" },
 		},
 	},
 }

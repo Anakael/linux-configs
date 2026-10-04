@@ -1,10 +1,3 @@
-local change_variant = function(direction)
-	local luasnip = require("luasnip")
-	if luasnip.choice_active() then
-		luasnip.change_choice(direction)
-	end
-end
-
 return {
 	{
 		"L3MON4D3/LuaSnip",
@@ -12,22 +5,6 @@ return {
 		build = "make install_jsregexp",
 		opts = {
 			update_events = "TextChanged,TextChangedI",
-		},
-		keys = {
-			{
-				"<C-n>",
-				function()
-					change_variant(1)
-				end,
-			},
-			mode = { { "i", "s" } },
-			{
-				"<C-p>",
-				function()
-					change_variant(-1)
-				end,
-			},
-			mode = { { "i", "s" } },
 		},
 		config = function(_, opts)
 			local luasnip = require("luasnip")

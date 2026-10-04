@@ -12,7 +12,7 @@ return {
 			ui_select = { enable = false }, -- vim.ui.select() wrapper
 		},
 		keys = {
-			{ "<F8>", ":Namu symbols<cr>" },
+			{ "<F8>", ":Namu symbols<cr>", desc = "Search document symbols" },
 		},
 	},
 }
