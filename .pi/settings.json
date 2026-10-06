@@ -1,0 +1,49 @@
+{
+  "lastChangelogVersion": "1.0.4",
+  "theme": "dark",
+  "defaultTools": [
+    "+codemode"
+  ],
+  "codemode": {
+    "mode": "on"
+  },
+  "packages": [
+    "npm:pi-subagents",
+    "npm:pi-lens",
+    "npm:@gotgenes/pi-permission-system",
+    "npm:context-mode",
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-powerline-footer",
+    "npm:pi-context-view",
+    "npm:pi-agent-browser-native",
+    "npm:@upstash/context7-pi",
+    "npm:pi-tool-display",
+    "https://github.com/gsanhueza/pi-token-speed",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@juicesharp/rpiv-ask-user-question"
+  ],
+  "defaultProvider": "sleev-llama",
+  "defaultModel": "qwen-dflash",
+  "powerline": {
+    "disabledSegments": [
+      "thinking",
+      "cache_read",
+      "cache_write",
+      "cost",
+      "custom:ponytail"
+    ],
+    "customItems": [
+      {
+        "id": "ponytail"
+      }
+    ],
+    "model": {
+      "showThinkingLevel": true
+    }
+  },
+  "npmCommand": [
+    "pnpm"
+  ],
+  "hideThinkingBlock": false
+}

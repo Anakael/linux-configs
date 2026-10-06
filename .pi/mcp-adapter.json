@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "context-mode": {
+      "command": "context-mode"
+    },
+    "serena": {
+      "command": "serena",
+      "args": [
+        "start-mcp-server",
+        "--context=ide",
+        "--project-from-cwd",
+        "--open-web-dashboard=false"
+      ]
+    }
+  }
+}

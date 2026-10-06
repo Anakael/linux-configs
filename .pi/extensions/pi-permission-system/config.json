@@ -1,0 +1,42 @@
+{
+  "permission": {
+    "*": "allow",
+    "path": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "sudo *": "deny"
+    },
+    "external_directory_read": {
+      "~/.pi/agent/settings.json": "allow",
+      "~/.pi/agent/npm/*/README.md": "allow",
+      "~/.pi/agent/npm/*/docs/*": "allow"
+    },
+    "external_directory": {
+      "*": "ask",
+      "/tpm/*": "allow",
+      "~/.pi/agent/agents": "allow",
+      "~/.pi/agent/agents/*": "allow",
+      "~/.pi/agent/extensions": "allow",
+      "~/.pi/agent/extensions/*": "allow",
+      "~/.pi/agent/git": "allow",
+      "~/.pi/agent/git/*": "allow",
+      "~/.pi/agent/install": "allow",
+      "~/.pi/agent/install/*": "allow",
+      "~/.pi/agent/npm": "allow",
+      "~/.pi/agent/npm/*": "allow",
+      "~/.pi/agent/prompts": "allow",
+      "~/.pi/agent/prompts/*": "allow",
+      "~/.pi/agent/skills": "allow",
+      "~/.pi/agent/skills/*": "allow",
+      "~/.pi/agent/themes": "allow",
+      "~/.pi/agent/themes/*": "allow",
+      "~/.agents/skills": "allow",
+      "~/.agents/skills/*": "allow"
+    }
+  }
+}
